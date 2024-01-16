@@ -41,7 +41,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
           script: |
             cd /home/${{ secrets.USERNAME }}/blog
             docker-compose pull
