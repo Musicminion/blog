@@ -1,5 +1,5 @@
 {
-  "name": "hexo-site",
+  "name": "musicminion-blog",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": ""
+    "version": "7.0.0"
   },
   "dependencies": {
     "hexo": "^7.0.0",
@@ -21,6 +21,7 @@
     "hexo-renderer-marked": "^6.0.0",
     "hexo-renderer-stylus": "^3.0.0",
     "hexo-server": "^3.0.0",
+    "hexo-theme-fluid": "^1.9.7",
     "hexo-theme-landscape": "^1.0.0"
   }
 }
