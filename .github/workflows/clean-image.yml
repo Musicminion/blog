@@ -1,0 +1,26 @@
+name: Clean Images
+
+on:
+#   push:
+#     branches:
+#       - main
+  workflow_dispatch:
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: musicminion/blog
+  IMAGE_TAG: latest
+
+jobs:
+  clean-images:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Delete 'untaged' containers
+          uses: snok/container-retention-policy@v2
+          with:
+            image-names: blog
+            cut-off: 1 min ago UTC
+            account-type: personal
+            untagged-only: true
+            token: ${{ secrets.GITHUB_TOKEN }}
+            token-type: github-token
