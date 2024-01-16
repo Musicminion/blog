@@ -4,6 +4,7 @@ tags: [Overleaf, Latex]
 date: 2024-01-16 19:00:00
 index_img: 2024/01/Overleaf-Docker-Compile/效果图.png
 banner_img: 2024/01/Overleaf-Docker-Compile/效果图.png
+author: Musicminion
 ---
 
 

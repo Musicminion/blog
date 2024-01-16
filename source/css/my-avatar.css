@@ -1,0 +1,14 @@
+.my-avatar:hover{
+    transform: rotate(360deg); /* 鼠标悬停时旋转 */
+}
+
+.my-avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transition: transform 0.5s; /* 添加过渡效果 */
+    /* 添加边框 */
+    border: 5px solid #ddd;
+    /* 添加bottom的margin值，使其与下面的文字对齐 */
+    margin-bottom: 50px;
+}
