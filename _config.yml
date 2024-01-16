@@ -13,8 +13,13 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
-permalink: :year/:month/:day/:title/
+url: http://blog.ayaka.space
+
+# 之前的永久链接是会把年份、月份、日期都加上的，但是我已经按照年份、月份、日期分好了文件夹
+# 所以这里就不需要了，直接把永久链接设置为标题就可以了
+# permalink: :year/:month/:day/:title/
+permalink: :title/
+
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -40,7 +45,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -102,3 +107,10 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+
+# post asset folder
+post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
