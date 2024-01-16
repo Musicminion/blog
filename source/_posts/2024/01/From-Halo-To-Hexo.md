@@ -261,3 +261,32 @@ authorized_keys  github_blog_deploy  github_blog_deploy.pub  known_hosts
 - `USERNAME`填写主机上对应的用户名
 - 剩下的就可以愉快的写自己要跑的命令咯
 
+#### 3）清理ghcr镜像
+
+ghcr有一个很愚蠢的特点，他的镜像，不会自动覆盖，而会变成untagged，这就要手动清理，否则会很麻烦，方法是写一个git-aciton每天执行一次
+
+```yml
+name: Clean Images
+
+on:
+    schedule:
+        - cron: '0 0 * * *' # 每天执行一次，UTC时间 00:00
+    workflow_dispatch:
+
+jobs:
+  clean-images:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Delete 'untaged' containers
+          uses: snok/container-retention-policy@v2
+          with:
+            image-names: blog
+            cut-off: 1 min ago UTC
+            account-type: personal
+            untagged-only: true
+            token: ${{ secrets.GITHUB_TOKEN }}
+            token-type: github-token
+```
+
+- 注意这里的个人账户、组织账户区别很大，还得小心填写，如果不确定，还可以开启`dry-run`免得把自己的镜像删错了。
+
