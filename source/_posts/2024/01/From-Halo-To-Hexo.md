@@ -149,3 +149,115 @@ marked:
 加上手动替换博客里面链接，然后新建一个同名的文件夹，并把图片搬过去，勉强算作我可以接受的复杂度。
 
 > 现在，开始我的博客之旅啦！
+
+### 四、Post Install Steps
+
+> 当然，捣鼓好这些之后，我还需要配置好GIt-Action、服务器部署、Docker部署，正好复习一下基本的运维知识。
+
+#### 1）Dockerfile
+
+这应该是一个前端的Docker的模版文件了
+
+- 用`nodejs`容器来构建
+- 把打包好的html文件夹拷贝到`nginx`里面
+- 为什么分build容器、nginx容器？因为build容器非常大，nodejs的容器可能有500M，但是nginx容器只有几十兆，所以非常省空间，更何况运行的时候不需要nodejs环境啊
+
+```dockerfile
+FROM node:20.11.0 as build
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install && npm run build
+
+FROM nginx:1.19.4-alpine
+
+COPY --from=build /app/public /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+#### 2）Git Action
+
+我们的老朋友Git Action。自从我发现ghcr也是免费的，我就开始用ghcr了，因为不需要额外的配置密钥。
+
+```yml
+name: Build Images
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: musicminion/blog
+  IMAGE_TAG: latest
+
+jobs:
+  push-store-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@main
+
+      - name: "Login to GitHub Container Registry"
+        uses: docker/login-action@v3.0.0
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build and push Docker image
+        id: docker_build
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          platforms: linux/amd64
+      
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd /home/${{ secrets.USERNAME }}/blog
+            docker-compose pull
+            docker-compose down
+            docker-compose up -d
+            docker system prune -a -f
+```
+
+最后为了实现能够部署到服务器，需要[appleboy/ssh-action](https://github.com/appleboy/ssh-action)这个工作流。
+
+首先生成`ssh key`：
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+然后他会问你，你要把文件生成到哪里，你需要指定一个目录，我指定名字为`github_blog_deploy`
+
+然后查看`~/.ssh`文件夹下面，会发现：
+
+```
+admin@iZj6cckkqhgd7jajtcsk2jZ:~/.ssh$ ls
+authorized_keys  github_blog_deploy  github_blog_deploy.pub  known_hosts
+```
+
+注意：
+
+- `pub`对应的文件是公钥，需要把`pub`里面的内容，手动添加到`authorized_keys`
+- `github_blog_deploy`是私钥，打死也不能泄露！！！要把他添加到github的环境变量里面哦
+- 对应的环境变量是`KEY`
+- `USERNAME`填写主机上对应的用户名
+- 剩下的就可以愉快的写自己要跑的命令咯
+
