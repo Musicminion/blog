@@ -114,3 +114,10 @@ post_asset_folder: true
 marked:
   prependRoot: true
   postAsset: true
+
+# sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+  host: http://blog.ayaka.space
