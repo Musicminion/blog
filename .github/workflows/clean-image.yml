@@ -1,15 +1,10 @@
 name: Clean Images
 
 on:
-#   push:
-#     branches:
-#       - main
-  workflow_dispatch:
+    schedule:
+        - cron: '0 0 * * *' # 每天执行一次，UTC时间 00:00
+    workflow_dispatch:
 
-env:
-  DOCKER_REGISTRY: ghcr.io
-  IMAGE_NAME: musicminion/blog
-  IMAGE_TAG: latest
 
 jobs:
   clean-images:
