@@ -901,7 +901,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /assets/images/background/ayaka-blue.jpg
+  banner_img: /assets/images/background/ayaka-pink.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -930,7 +930,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /assets/images/background/ayaka-night.jpg
   banner_img_height: 80
   banner_mask_alpha: 0.3
   tagcloud:
