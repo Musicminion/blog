@@ -4,3 +4,6 @@ hexo.extend.injector.register('head_begin', '<link rel="stylesheet" href="/css/m
 
 // Add msvalidate
 hexo.extend.injector.register('head_begin', '<meta name="msvalidate.01" content="3A0A333C87F53DC35E793673A0667DFC" />', 'default');
+
+// Google 
+hexo.extend.injector.register('head_begin', '<meta name="google-site-verification" content="2NUVG0mhrcFS8ODsFQju4NNmfpTNvWIMG5iqrvEM-88" />', 'default');
