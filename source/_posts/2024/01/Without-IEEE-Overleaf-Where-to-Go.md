@@ -10,6 +10,8 @@ author: Musicminion
 
 ## IEEE白嫖Overleaf即将失效，又该何去何从？
 
+![IEEE结束支持 1-17日](end-of-support.png)
+
 > 2023年7月还是8月的时候，我正在复习考研数学。有一天我的一个群友「我心永恒」发布了一篇博客《[白嫖 overleaf 会员](https://wxyhgk.com/article/overleaf-bp)》，看完之后狂喜的我立马打开了 IEEE 官网，注册+关联一系列丝滑的操作，获取到了免费版的「Overleaf Pro」，殊不知几个月后，国内开启了白嫖IEEE的狂潮，结果可想而知...
 
 ### 一、背景
@@ -186,4 +188,5 @@ Overleaf的官网展示了所有订阅了Overleaf的大学，正如下图所示�
 - 网络连接质量很好
 - 需要与Github同步、之前的版本管理不希望丢弃
 
-综合考虑，付费买Overleaf成了最佳选择，也是唯一选择，现在就等过期了吧，害。
+综合考虑，付费买Overleaf成了最佳选择，也是**唯一选择**，现在就等过期了吧，害。
+
