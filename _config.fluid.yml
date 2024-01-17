@@ -571,11 +571,11 @@ post:
     # 浏览量计数
     # Number of visits
     views:
-      enable: false
+      enable: true
       # 统计数据来源
       # Data Source
       # Options: busuanzi | leancloud
-      source: "busuanzi"
+      source: "leancloud"
 
   # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
   # Update date is displayed at the beginning of the post. The default date is the update date of the md file, which can be manually specified by `updated` in front-matter (same format as date)
@@ -719,11 +719,11 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: false
+    enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: disqus
+    type: valine
 
 
 #---------------------------
@@ -784,21 +784,21 @@ gitalk:
 # Based on LeanCloud
 # See: https://valine.js.org/
 valine:
-  appId:
-  appKey:
+  appId: pMjXmlBTjhLjBw6u9qutEIoJ-gzGzoHsz
+  appKey: b0ebLyfsc5qiY8DyGxRLErZP
   path: window.location.pathname
-  placeholder:
+  placeholder: '说点什么吧...昵称填写qq号可以识别QQ头像哦~'
   avatar: 'retro'
   meta: ['nick', 'mail', 'link']
   requiredFields: []
   pageSize: 10
   lang: 'zh-CN'
   highlight: false
-  recordIP: false
-  serverURLs: ''
+  recordIP: true
+  serverURLs: 'https://pmjxmlbt.lc-cn-n1-shared.com'
   emojiCDN:
   emojiMaps:
-  enableQQ: false
+  enableQQ: true
 
 # Waline
 # 从 Valine 衍生而来，额外增加了服务端和多种功能
