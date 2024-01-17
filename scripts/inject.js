@@ -7,3 +7,6 @@ hexo.extend.injector.register('head_begin', '<meta name="msvalidate.01" content=
 
 // Google 
 hexo.extend.injector.register('head_begin', '<meta name="google-site-verification" content="2NUVG0mhrcFS8ODsFQju4NNmfpTNvWIMG5iqrvEM-88" />', 'default');
+
+// baidu 
+hexo.extend.injector.register('head_begin', '<meta name="baidu-site-verification" content="codeva-q9oPrfpq6W" />', 'default');
