@@ -2,6 +2,7 @@
 title: IEEE白嫖Overleaf即将失效，又该何去何从？
 tags: [Overleaf, Latex, 白嫖, IEEE]
 date: 2024-01-17 16:23:00
+updated: 2024-01-18 12:30:00
 index_img: 2024/01/Without-IEEE-Overleaf-Where-to-Go/university-purchase-overleaf.png
 banner_img: 2024/01/Without-IEEE-Overleaf-Where-to-Go/university-purchase-overleaf.png
 author: Musicminion

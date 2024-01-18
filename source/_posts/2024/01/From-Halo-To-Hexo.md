@@ -2,6 +2,7 @@
 title: 从Halo迁移到Hexo，放弃变质的Halo博客
 tags: [Halo, Hexo, 建站, 运维, 博客]
 date: 2024-01-16 21:00:00
+updated: 2024-01-16 21:00:00
 index_img: 2024/01/From-Halo-To-Hexo/dashboard.bmp
 banner_img: 2024/01/From-Halo-To-Hexo/dashboard.bmp
 author: Musicminion
