@@ -190,3 +190,142 @@ Overleaf的官网展示了所有订阅了Overleaf的大学，正如下图所示�
 
 综合考虑，付费买Overleaf成了最佳选择，也是**唯一选择**，现在就等过期了吧，害。
 
+#### 3）一个简单的检查单
+
+##### Overleaf 官网
+
+但是或许其他白嫖用户并不是这样，我总结了若干个表：
+
+|             情况              | 一定需要/符合 | 可有可无 | 不需要/不符合 |
+| :---------------------------: | :-----------: | :------: | :-----------: |
+|       希望简化环境配置        |     $+10$     |   $+0$   |     $-10$     |
+|     希望用到可视化编辑器      |     $+20$     |   $+0$   |     $-20$     |
+|    希望随时随地都可以写作     |     $+10$     |   $+0$   |     $-10$     |
+|         需要协同编辑          |     $+20$     |   $+0$   |     $-20$     |
+|       需要与Github同步        |     $+20$     |   $+0$   |     $-20$     |
+|   之前的版本管理不希望丢弃    |     $+30$     |   $+0$   |     $-20$     |
+| 不介意网络连接问题/有连接方法 |     $+5$      |   $+0$   |     $-40$     |
+|    带电脑、iPad外出时写作     |     $+5$      |   $+0$   |     $-5$      |
+|      可以接受每月9刀价格      |     $+10$     |   $+0$   |     $-40$     |
+
+- 如果算下来是$(-\infty, 30]$，不考虑买，
+- 如果算下来是$[30, 70)$​，可以酌情考虑买一下
+- 如果算下来是$[70, +\infty)$，可以考虑买一下
+
+##### Overleaf 自建
+
+|          情况          | 一定需要/符合 |   可有可无   | 不需要/不符合 |
+| :--------------------: | :-----------: | :----------: | :-----------: |
+| 熟悉Docker与Linux运维  |     $+20$     | 不存在此选项 |     $-40$     |
+|   熟悉Latex环境配置    |     $+20$     | 不存在此选项 |     $-40$     |
+|  希望简化本地环境配置  |     $+10$     |     $+0$     |     $-10$     |
+|  希望用到可视化编辑器  |     $+20$     |     $+0$     |     $-20$     |
+| 希望随时随地都可以写作 |     $+10$     |     $+0$     |     $-10$     |
+| 有(买)一台2c2g的服务器 |     $+20$     | 不存在此选项 |     $-40$     |
+|    无需 github 同步    |     $+20$     | 不存在此选项 |     $-50$     |
+|   希望更快的网络连接   |     $+20$     |     $+0$     |     $+0$      |
+
+- 如果算下来是$(-\infty, 0]$，不考虑自建
+- 如果算下来是$[60, +\infty)$，可以考虑一下
+
+##### 本地VS Code
+
+|             情况             | 一定需要/符合 |   可有可无   | 不需要/不符合 |
+| :--------------------------: | :-----------: | :----------: | :-----------: |
+|      熟悉Latex环境配置       |     $+20$     | 不存在此选项 |     $-40$     |
+|  可以接受复杂化的Latex环境   |     $+20$     | 不存在此选项 |     $-40$     |
+|     无需用到可视化编辑器     |     $+20$     | 不存在此选项 |     $-40$     |
+|        希望更快的速度        |     $+20$     |     $+0$     |     $+0$      |
+|      需要  github 同步       |     $+20$     |     $+0$     |     $+0$      |
+| 不考虑带电脑、iPad外出时写作 |     $+5$      |     $+0$     |     $-5$      |
+
+- 如果算下来是$(-\infty, 0]$，不考虑本地
+- 如果算下来是$[60, +\infty)$，可以考虑
+
+### 四、开源不是白嫖的理由
+
+根据Overleaf的介绍，Overleaf的$80\%$的代码是**开源**的，正如你在[A web-based collaborative LaTeX editor (github.com)](https://github.com/overleaf/overleaf)所见，有些功能甚至可以借助开源的代码自己复现出来。
+
+我在之前的博客里面写过，尝试将Overleaf接入Docker编译、甚至还尝试过接入单点登录，都已经实现了，但是这种社区实现的功能，随着Overleaf本体的更新，或多或少肯定会出现一些问题，也不可能组建一个专门的国内Overleaf维护团队，对新版的社区版Overleaf进行适配。
+
+在我二次开发的过程中，读过一些Overleaf的代码，在这里不妨贴一段Overleaf代码，他的代码几乎都是**回调嵌套回调**：[引用链接](https://github.com/overleaf/overleaf/blob/29bfdae57d5e2ecafa3c531f298cb6dad0994eb1/services/web/app/src/Features/Authentication/AuthenticationManager.js#L121C1-L189C5)
+
+- 在一个函数里面嵌套三层回调函数，那可谓是常态
+- `import`时大量引用相对路径，查找及其困难
+- 二次开发要求比较高，代码难度读懂很大
+
+```javascript
+  	authenticate(query, password, auditLog, callback) {
+    if (typeof callback === 'undefined') {
+      callback = auditLog
+      auditLog = null
+    }
+    AuthenticationManager._checkUserPassword(
+      query,
+      password,
+      (error, user, match) => {
+        if (error) {
+          return callback(error)
+        }
+        if (!user) {
+          return callback(null, null)
+        }
+        const update = { $inc: { loginEpoch: 1 } }
+        if (!match) {
+          update.$set = { lastFailedLogin: new Date() }
+        }
+        User.updateOne(
+          { _id: user._id, loginEpoch: user.loginEpoch },
+          update,
+          {},
+          (err, result) => {
+            if (err) {
+              return callback(err)
+            }
+            if (result.modifiedCount !== 1) {
+              return callback(new ParallelLoginError())
+            }
+            if (!match) {
+              if (!auditLog) {
+                return callback(null, null)
+              } else {
+                return UserAuditLogHandler.addEntry(
+                  user._id,
+                  'failed-password-match',
+                  user._id,
+                  auditLog.ipAddress,
+                  auditLog.info,
+                  err => {
+                    if (err) {
+                      logger.error(
+                        { userId: user._id, err, info: auditLog.info },
+                        'Error while adding AuditLog entry for failed-password-match'
+                      )
+                    }
+                    callback(null, null)
+                  }
+                )
+              }
+            }
+            AuthenticationManager.checkRounds(
+              user,
+              user.hashedPassword,
+              password,
+              function (err) {
+                if (err) {
+                  return callback(err)
+                }
+                callback(null, user)
+                HaveIBeenPwned.checkPasswordForReuseInBackground(password)
+              }
+            )
+          }
+        )
+      }
+    )
+  },
+```
+
+不得不说Overleaf团队还是蛮厉害的，这种遗留的历史项目（屎山），还可以一直开发下去。毕竟别人是花费了努力和时间去开发的，想用更好的功能，付个费也似乎是应当的事情。对于Overleaf来说，服务器、s3存储等都是一笔不小的费用（按小时计费），所以不要再天真的问为什么没有永久买断制的软件了，除非它是一个单机软件。
+
+> 最后：overleaf你要不考虑考虑重构一下你的代码，还有这个界面说真的太丑了，换一下吧（逃
