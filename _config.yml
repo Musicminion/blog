@@ -129,3 +129,7 @@ hexo-uglify:
   enable: true
   mangle: true
   compress: true
+
+markdown:
+  plugins:
+    - "@traptitech/markdown-it-katex"
