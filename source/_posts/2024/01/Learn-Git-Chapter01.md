@@ -1,6 +1,6 @@
 ---
-title: Git学习|第一章 起步
-tags: [Git, 学习, 专辑]
+title: Git学习 | 第一章 起步
+tags: [Git, 学习, 笔记, 专辑]
 date: 2024-01-23 23:00:00
 updated: 2024-01-24 00:06:00
 index_img: 2024/01/Learn-Git-Chapter01/snapshots.png
