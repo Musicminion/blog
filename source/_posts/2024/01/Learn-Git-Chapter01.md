@@ -8,7 +8,7 @@ banner_img: 2024/01/Learn-Git-Chapter01/snapshots.png
 author: Musicminion
 ---
 
-## Git学习|第一章 起步
+## Git学习 | 第一章 起步
 
 > 由于我马上就要考研复试，一看水源那些转专业的，**似乎都被问到了git**，整得我非常慌。本来我自己的git学的半瓢水（没学过，从来都是用图形界面），而且我自己一般都是个人开发，很少用到那种冲突合并，用git版本管理单纯就是留一条后路（逃）真正回退什么的到不多，所以打算开始更新博客的小专题，**Git学习**。内容参考了[Git - Book (git-scm.com)](https://git-scm.com/book/zh/v2)。希望可以坚持下去。
 

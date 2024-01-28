@@ -342,8 +342,9 @@ navbar:
   # Navigation bar menu. `key` is used to associate languages/*.yml. If there is no association, the value of `key` itself will be displayed; if `icon` is a css class, it can be omitted; adding `name` can force the display of the specified name
   menu:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+    - { key: "github", link: "https://github.com/musicminion/blog", icon: "iconfont icon-github-fill", name: "GitHub"}
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
-    - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
+    # - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
@@ -719,7 +720,7 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: true
+    enable: false
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
@@ -947,7 +948,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: assets/images/background/ayaka-blue.jpg
+  banner_img: assets/images/background/ayaka-pink.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   avatar: /img/avatar.png
