@@ -3,8 +3,8 @@ title: 笔记分享 | CSE 之 inode文件系统
 tags: [inode, 文件系统, 学习, 笔记]
 date: 2024-01-24 10:16:00
 updated: 2024-01-24 10:16:00
-index_img: 2024/01/Notes-inode-fs/文件系统层次.png
-banner_img: 2024/01/Notes-inode-fs/文件系统层次.png
+index_img: 2024/01/Notes-CSE-inode-fs/文件系统层次.png
+banner_img: 2024/01/Notes-CSE-inode-fs/文件系统层次.png
 author: Musicminion
 ---
 
