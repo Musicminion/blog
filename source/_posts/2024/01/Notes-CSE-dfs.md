@@ -3,8 +3,8 @@ title: 笔记分享 | CSE 之 分布式文件系统
 tags: [inode, 文件系统, 学习, 笔记]
 date: 2024-01-28 15:42:00
 updated: 2024-01-28 15:42:00
-index_img: 2024/01/Notes-CSE-inode-fs/VFS.png
-banner_img: 2024/01/Notes-CSE-inode-fs/VFS.png
+index_img: 2024/01/Notes-CSE-dfs/VFS.png
+banner_img: 2024/01/Notes-CSE-dfs/VFS.png
 author: Musicminion
 ---
 
@@ -54,7 +54,7 @@ NFS 的设计目标是在 1980 年代写的文档提出来的，全称Network Fi
 
 要用到的RPC方法有：
 
-![用到的RPC方法](.RPC-method.png)
+![用到的RPC方法](./RPC-method.png)
 
 在这个里面有哪个API是文件系统没有的API？思考一下？open和close。为什么没有这个API我们后面再来讲。
 
@@ -95,7 +95,7 @@ graph TD;
 - 然后nfs Server 就会去读这个文件。读哪个文件呢？根据你的 by handler 去读这个文件。读完以后得到了一个buffer，然后把这个 buffer 和文件的 attribute 一起重新传给这个 NFS client，NFS client 就会通过把这个数据返回给这个client，然后 application 读到这个数据之后就调close
 - 结果这个 close 就直接短路了，没有任何的这个像 NFS Server 的这个 RPC 就返回。
 
-![读取NFS文件内容](.Read-NFS-file.png)
+![读取NFS文件内容](./Read-NFS-file.png)
 
 为什么要这样设计？我们来考虑一下这个系统里面要维护的状态在哪？服务端没有维护状态，可以说是类似restful的，返回的所有的状态就都在NFS的Client里面保存着。假设我们在上图里面的红色部分`No State after Open`那个地方发生了一次重启，速度非常快，那么对于客户端，是无感知的！因为服务端没有保存任何信息，所以容错能力大大加强。
 
@@ -131,7 +131,7 @@ graph TD;
 - 如果是本地文件系统，我们应该读取到dir2下面的
 - 所以在 NFS 里面的话，我们也需要同样的这个语义
 
-![case1](.case1.png)
+![case1](./case1.png)
 
 此外NFS服务器，具有Stateless，好处如下
 
@@ -143,7 +143,7 @@ graph TD;
 
 就是在 Windows 上面的话，当你打开一个文件之后，你是不能把它删掉，它会告诉你文件正在被使用，无法删除。但是Linux里面可以。当你在这打开一个文件A，删掉一个文件A，又创建一个同名的文件A之后，这边再去读这个FD，对于这个 local FS文件系统来说呢，它读到的**应该是那个旧的文件**。大家还记得吗？我们讲过一个 DELETE after open 的case（出CSE考卷的例子），对于file table来说，如果有个文件已经打开，但是同时把他删掉，这个文件其实不会被马上删除，他要等到打开这个人 close 的时候再把它给删掉。
 
-![case2](.case2.png)
+![case2](./case2.png)
 
 但是在网络文件系统里面的话，由于没有状态，所以 Server 并不知道有人打开这一个文件，所以他读到的**可能是那个新的文件**。为了避免错误，所以我们就加上一个 generation number。加上版本号之后，当 client2 再去读取那个文件的时候，它是没有能力读到那个旧的文件，因为旧的那个文件已经被删掉了，因为 Server 其实并不知道有人打开这个东西。所以他只能报错，说打不开了。
 
@@ -175,7 +175,7 @@ NFS 和本地的相比还有一些区别。
 - 如果是按照上面的第一种思路，叫做 read write coherence，那就可以实现，读到最新写的，但是这样效率太低了
 - 如果按照上面的第二种，那就肯定读不到最新的了。在close的时候，我们不能够就这么简单的close，还需要保证与远程的文件同步所有的写操作
 
-![读写例子](.read-write-case.png)
+![读写例子](./read-write-case.png)
 
 #### 7）VFS
 
@@ -200,7 +200,7 @@ NFS one 会维持一个 v node，这个 v node的里面有很多文件的元数�
 - 【注意】：右边的NFS Server 调用V node layer，和左边的File system Call layer调用V node layer，这两个lookup的本质是一样的。下图里面的红色圈圈
 - 然后，右边的vnode layer，就会调用到本地文件系统。当然，这里的本地文件系统，可以是ext4，也可以是本地文件系统
 
-![VFS示意图](.VFS.png)
+![VFS示意图](./VFS.png)
 
 所以换句话说，我们再想一个极端一点的例子，如果我这个 NFS client 和Server是同一个机器，是不是也可以？所以在 vnode这一层，通过RPC之后其实一切都打通了，所以我们就是说这个层次的这个设计就是有这个好处，vnode这一个层次，我不care你来自于本地的一个 LOOKUP 的函数，还是来自于远端的一个 LOOKUP 函数。
 
@@ -208,7 +208,7 @@ NFS one 会维持一个 v node，这个 v node的里面有很多文件的元数�
 
 当时我记得问你们的这个董明凯老师，我说你觉得linux的设计哪里非常漂亮，你看这个 VFS 设计的就非常漂亮。还屏蔽了底层不同的文件系统的差异。
 
-![VFS层次视角](.VFS-layer.png)
+![VFS层次视角](./VFS-layer.png)
 
 #### 10）提高读取性能
 
@@ -280,11 +280,11 @@ File Layer是第二层，我们前面学过一个inode里面可能对应多个bl
 
 GMS 的这个 architecture 就变成这样，中间有一台 master 节点，跟我们前面说的一样，然后这个 master 节点有 n 个 chunk Server，这个 chunk Server 就是我们前面说的用来保存数据的这个Server，然后每一个 chunk Server 都会有固定大小的的chunks，chunks的大小是64M。所有的 Meta data 就是这个 master 节点会把一个文件映射到不同的这个chunks。作为它的这个类似于inode的作用。
 
-![GFS架构](.GFS-arch.png)
+![GFS架构](./GFS-arch.png)
 
 一个文件是由很多个 64 兆的 chunk 组成的，这个 chunk 不一定是在一台机器上，可能是在多台机器上，然后每个文件就是它的一个非常重要的特点，每个文件的每个 chunk 都有 3 备份，如下图所示。
 
-![GFS的chunks](.chunks.png)
+![GFS的chunks](./chunks.png)
 
 #### 3）chunk
 
@@ -337,7 +337,7 @@ GMS 的 client 它的代码是直接被映射到每一个 application 中间，�
 
 我根据自己的理解画了一下两个阶段的示意图，首先第一个阶段是data flow，重点在于把文件的数据给写完。第二个阶段在于同步Replica，备份。
 
-![两阶段示意图](.2phase.png)
+![两阶段示意图](./2phase.png)
 
 每个Chunk有自己的版本号，用来检测是否某个版本有陈旧的数据，如果有的话，旧的数据就会被踢出去。Primary如果发现哪个secondary版本过时了，就把它踢掉。
 
@@ -349,7 +349,7 @@ GMS 的 client 它的代码是直接被映射到每一个 application 中间，�
 
 有了GFS之后，就有开源的HDFS（Hadoop Distributed FS）。它允许在大数据集上使用集群的分布式处理。它是一个GFS的开源设计，可以在廉价的服务器上做集群、有高容错和大规模的吞吐和部署能力。
 
-![HDFS](.HDFS.png)
+![HDFS](./HDFS.png)
 
 它分为namenode和datanode，其实和GFS的逻辑差不多，换了个名字而已。
 
