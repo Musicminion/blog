@@ -11,12 +11,3 @@ hexo.extend.injector.register('head_begin', '<meta name="google-site-verificatio
 // baidu 
 hexo.extend.injector.register('head_begin', '<meta name="baidu-site-verification" content="codeva-q9oPrfpq6W" />', 'default');
 
-
-// 文章编辑链接
-// hexo.extend.filter.register('theme_inject', function(injects, hexo) {
-//     // var editBaseUrl = "https://github.com/Musicminion/blog/tree/main/source/_posts"
-//     // var curPath = hexo
-
-//     // var editUrl = editBaseUrl + curPath
-//     // injects.postMarkdownEnd.raw('default', '<a href="' + editUrl + '">编辑链接</a>');
-// });
