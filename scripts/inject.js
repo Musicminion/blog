@@ -13,7 +13,14 @@ hexo.extend.injector.register('head_begin', '<meta name="baidu-site-verification
 
 // Add edit url
 hexo.extend.filter.register('theme_inject', function(injects) {
-    injects.postMetaBottom.raw('editurl-script', '<script async src="/js/goEdit.js" crossorigin="anonymous"></script>');
-    injects.postMetaBottom.raw('editurl-tag', '<i class="iconfont icon-pen"></i>');
-    injects.postMetaBottom.raw('editurl-link', '<a href="javascript:goEdit()"> 编辑链接</a>');
+    // 旧的代码，不再使用，这个是分开插入的
+    // injects.postMetaBottom.raw('editurl-script', '<script async src="/js/goEdit.js" crossorigin="anonymous"></script>');
+    // injects.postMetaBottom.raw('editurl-tag1', '<div><i class="iconfont icon-pen"></i></div>');
+    // injects.postMetaBottom.raw('editurl-tag', '<i class="iconfont icon-pen"></i>');
+    // injects.postMetaBottom.raw('editurl-link', '<a href="javascript:goEdit()"> 编辑链接</a>');
+
+    injects.postMetaBottom.raw('editurl-link', `<div class="post-meta">
+    <script async src="/js/goEdit.js" crossorigin="anonymous"></script>
+    <a href="javascript:goEdit()" style="font-size: .9rem;"> <i class="iconfont icon-pen"></i> 编辑链接 </a>
+    </div>`);
 })
