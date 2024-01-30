@@ -11,3 +11,9 @@ hexo.extend.injector.register('head_begin', '<meta name="google-site-verificatio
 // baidu 
 hexo.extend.injector.register('head_begin', '<meta name="baidu-site-verification" content="codeva-q9oPrfpq6W" />', 'default');
 
+// Add edit url
+hexo.extend.filter.register('theme_inject', function(injects) {
+    injects.postMetaBottom.raw('editurl-script', '<script async src="/js/goEdit.js" crossorigin="anonymous"></script>');
+    injects.postMetaBottom.raw('editurl-tag', '<i class="iconfont icon-pen"></i>');
+    injects.postMetaBottom.raw('editurl-link', '<a href="javascript:goEdit()"> 编辑链接</a>');
+})
