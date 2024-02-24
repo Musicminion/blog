@@ -1,8 +1,8 @@
 ---
 title: Overleaf Pro开发展示
 tags: [Overleaf, Overleaf Pro, Pro, 软件开发]
-date: 2024-01-17 16:23:00
-updated: 2024-01-18 12:30:00
+date: 2024-02-24 17:33:00
+updated: 2024-02-24 17:33:00
 index_img: 2024/02/Overleaf-Pro-Effect-Display/register.png
 banner_img: 2024/02/Overleaf-Pro-Effect-Display/register.png
 author: Musicminion
@@ -81,10 +81,10 @@ Overleaf支持原生的亚马逊云的s3存储，如果自己有s3存储服务�
 镜像大小大概是：
 
 ```
-ghcr.io/ayaka-notes/texlive-full  2020.1  a274f5d89022   8 days ago  12.5GB
-ghcr.io/ayaka-notes/texlive-full  2022.1  4ddfdba00721   8 days ago  12.8GB
-ghcr.io/ayaka-notes/texlive-full  2021.1  ccc4f9c281bc   8 days ago  12.5GB
-ghcr.io/ayaka-notes/texlive-full  2023.1  8b2ac4360b62   8 days ago  13.2GB
+texlive-full  2020.1  a274f5d89022   8 days ago  12.5GB
+texlive-full  2022.1  4ddfdba00721   8 days ago  12.8GB
+texlive-full  2021.1  ccc4f9c281bc   8 days ago  12.5GB
+texlive-full  2023.1  8b2ac4360b62   8 days ago  13.2GB
 ```
 
 但是这四个镜像底层都是公用的一个底层的Base层，比如他们的字体都是一样的，所以实际空间会比会这个小。
