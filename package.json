@@ -27,6 +27,7 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-fluid": "^1.9.7",
     "hexo-theme-landscape": "^1.0.0",
-    "hexo-uglify": "^2.0.0"
+    "hexo-uglify": "^2.0.0",
+    "markdown-it-emoji": "^3.0.0"
   }
 }

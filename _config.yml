@@ -130,6 +130,28 @@ hexo-uglify:
   mangle: true
   compress: true
 
+# markdown:
+#   plugins:
+#     - "@traptitech/markdown-it-katex"
+
 markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: false
+    linkify: true
+    typographer: true
+    quotes: '“”‘’'
   plugins:
+    - markdown-it-footnote
+    - markdown-it-sup
+    - markdown-it-sub
+    - markdown-it-abbr
+    - markdown-it-emoji
     - "@traptitech/markdown-it-katex"
+  anchors:
+    level: 2
+    collisionSuffix: 'v'
+    permalink: true
+    permalinkClass: header-anchor
+    permalinkSymbol: ¶
