@@ -8,18 +8,17 @@ banner_img: 2024/02/Leetcode-Plan-2024-02-Week4/打卡.png
 author: Musicminion
 ---
 
-
 ## Leetcode计划：2024年二月第四周
 
 > 由于本人寒假摸鱼，大四上学期一直在考研，寒假又在摸（原）鱼（神），所以曾经熟练的c++又变得生疏了起来，Leetcode是时候启动了！在不启动考研机考都要慌了！目前的计划是：
 >
 > 每天一题，如果很简单的，要求用c++和go两种语言写，如果是很难的可以只用c++写。
 
-|   日期   |                             周一                             | 周二 | 周三 | 周四 | 周五 | 周六 | 周日 | 统计率 |
-| :------: | :----------------------------------------------------------: | :--: | :--: | :--: | :--: | :--: | :--: | :----: |
-| 是否完成 |                      :white_check_mark:                      |      |      |      |      |      |      |        |
-| 独立完成 |                      :white_check_mark:                      |      |      |      |      |      |      |        |
-| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) |      |      |      |      |      |      |        |
+|   日期   |                             周一                             |                             周二                             | 周三 | 周四 | 周五 | 周六 | 周日 | 统计率 |
+| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :--: | :--: | :--: | :--: | :--: | :----: |
+| 是否完成 |                      :white_check_mark:                      |                      :white_check_mark:                      |      |      |      |      |      |        |
+| 独立完成 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |      |      |      |      |      |        |
+| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) | [2867](https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/) |      |      |      |      |      |        |
 
 ### 周一
 
