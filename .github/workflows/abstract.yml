@@ -2,7 +2,7 @@
 name: Metrics
 on:
   # Schedule updates (each hour)
-  # schedule: [{cron: "0 0 * * *"}]
+  schedule: [{ cron: "0 0 * * *" }]
   # Lines below let you run workflow manually and on each commit
   workflow_dispatch:
   # push: {branches: ["master", "main"]}
@@ -14,7 +14,10 @@ jobs:
         with:
           filename: metrics.svg
           # Your GitHub token
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: NOT_NEEDED
+          base: ""
+          user: Musicminion
+          # ${{ secrets.GITHUB_TOKEN }}
           # Options
           plugin_rss: yes
           plugin_rss_source: http://blog.ayaka.space/rss2.xml
