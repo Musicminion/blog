@@ -347,8 +347,8 @@ navbar:
     # - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: 'RSS', link: '/atom.xml', icon: 'iconfont icon-rss-fill' } 
-    #RSS订阅页，安装hexo-generator-feed插件后启用，注意修改link对应rss页面链接
+    - { key: 'RSS', link: '/rss2.xml', icon: 'iconfont icon-rss-fill' } 
+    # RSS订阅页，安装hexo-generator-feed插件后启用，注意修改link对应rss页面链接
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
