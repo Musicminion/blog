@@ -14,11 +14,11 @@ author: Musicminion
 >
 > 每天一题，如果很简单的，要求用c++和go两种语言写，如果是很难的可以只用c++写。
 
-|   日期   |                             周一                             |                             周二                             | 周三 | 周四 | 周五 | 周六 | 周日 | 统计率 |
-| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :--: | :--: | :--: | :--: | :--: | :----: |
-| 是否完成 |                      :white_check_mark:                      |                      :white_check_mark:                      |      |      |      |      |      |        |
-| 独立完成 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |      |      |      |      |      |        |
-| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) | [2867](https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/) |      |      |      |      |      |        |
+|   日期   |                             周一                             |                             周二                             |                             周三                             | 周四 | 周五 | 周六 | 周日 | 统计率 |
+| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :--: | :--: | :--: | :--: | :----: |
+| 是否完成 |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |      |      |      |      |  3/7   |
+| 独立完成 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |                      :white_check_mark:                      |      |      |      |      |  2/7   |
+| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) | [2867](https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/) | [2673](https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/) |      |      |      |      |        |
 
 ### 周一
 
@@ -211,7 +211,7 @@ public:
   - 好了这个题目就写出来了
 - 仔细把这个图想的更一般一些，这个图里面**可以连通的合数节点**我们可以把他抽象成一个子图，然后对于这些子图，我们只需要做一次DFS就够了，这样可以节约时间，官方题解里面用了count数组，记录每个节点所在的子图中，节点的数量（反正都是连通的嘛）
 
-![演示图](./Leetcode-Plan-2024-02-Week4/day2-solution)
+![演示图](./Leetcode-Plan-2024-02-Week4/day2-solution.png)
 
 最终的代码：
 
@@ -312,11 +312,86 @@ public:
 
 ```
 
+### 周三
+
+今天这个题目的图有点恶心。先把题目搬上来。
+
+给你一个整数 `n` 表示一棵 **满二叉树** 里面节点的数目，节点编号从 `1` 到 `n` 。根节点编号为 `1` ，树中每个非叶子节点 `i` 都有两个孩子，分别是左孩子 `2 * i` 和右孩子 `2 * i + 1` 。
+
+树中每个节点都有一个值，用下标从 **0** 开始、长度为 `n` 的整数数组 `cost` 表示，其中 `cost[i]` 是第 `i + 1` 个节点的值。每次操作，你可以将树中 **任意** 节点的值 **增加** `1` 。你可以执行操作 **任意** 次。
+
+你的目标是让根到每一个 **叶子结点** 的路径值相等。请你返回 **最少** 需要执行增加操作多少次。
+
+**注意：**
+
+- **满二叉树** 指的是一棵树，它满足树中除了叶子节点外每个节点都恰好有 2 个子节点，且所有叶子节点距离根节点距离相同。
+- **路径值** 指的是路径上所有节点的值之和。
+
+比如下面的这个图
+
+![题目图](./Leetcode-Plan-2024-02-Week4/binaryytreeedrawio-4.png)
 
 
+```
+输入：n = 7, cost = [1,5,2,2,3,3,1]
+输出：6
+解释：我们执行以下的增加操作：
+- 将节点 4 的值增加一次。
+- 将节点 3 的值增加三次。
+- 将节点 7 的值增加两次。
+从根到叶子的每一条路径值都为 9 。
+总共增加次数为 1 + 3 + 2 = 6 。
+这是最小的答案。
+```
 
+说实话这个给我一个误解，我看这个例子一下就以为，要把每个地方的左右节点，都要调整的权值完全一样！比如上面图里面的2号节点，对应权值是5，左右权值是2、3，那就是2+1变成3。然后对于根节点，也是啊，左右的节点也要调成权值一样。
 
+后来我发现我想错了，不能这样。我那样的方法并不是正确的答案。我把题目的例子稍微改了一下，就是本来是3的，改成4，如下图框框所示：
 
+- 首先肯定看叶子节点，因为每个叶子节点的兄弟节点，如果值不一样，肯定要把小的调成大的
+- 这样把最底层的全部调完，比如左下角的4号节点，权值2一定要调成3，右边的7号节点，权值1一定要调成4。
+- 调完之后，叶子节点的父亲，我就可以把权值给改了，因为他儿子节点权值都是3，所以我直接调成5+3=8
+- 这样同理，右下角的黑框，3号节点，权值2，现在变成2+4=6。
+- 最后看1号节点，左边儿子权值8，右边6，只需要把6再加2，就可以变成左右权值一样！
 
+![yuque_diagram](./Leetcode-Plan-2024-02-Week4/day3-solution.jpg)
 
+AC代码如下！
 
+```cpp
+class Solution {
+public:
+
+    int getResult(int rootNode, vector<int>& cost, int& result){
+        if(rootNode >= cost.size() || rootNode < 0)
+            return 0;
+        int leftNode = rootNode * 2;
+        int rightNode = rootNode * 2 + 1;
+
+        if(leftNode < cost.size() && rightNode < cost.size()){
+            int left = getResult(leftNode, cost, result);
+            int right = getResult(rightNode, cost, result);
+
+            int maxChild = max(left, right);
+            result += abs(left - right);
+            cost[rootNode] += maxChild;
+        }
+        return cost[rootNode];
+    }
+
+    int minIncrements(int n, vector<int>& cost) {
+        vector<int> cost2;
+        cost2.push_back(0);
+
+        for(int i = 0; i < cost.size(); i++){
+            cost2.push_back(cost[i]);
+        }
+
+        int result = 0;
+        getResult(1, cost2, result);
+        return result;
+    }
+};
+```
+
+浅说一下这题，例子没有给好，正好太特殊，底层全部变成3，就会给我一种错觉，所有的地方要把左右节点调整成一样的，实际上不是的，稍微举一反三就会找出正确的方法。
