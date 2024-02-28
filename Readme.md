@@ -7,7 +7,7 @@
 
 ## 概览
 
-![](./github-metrics.svg)
+![](./metrics.svg)
 
 ## 启动方式
 ```bash
