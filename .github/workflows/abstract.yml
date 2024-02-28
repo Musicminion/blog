@@ -12,17 +12,10 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
+          filename: metrics.svg
           # Your GitHub token
           token: ${{ secrets.GITHUB_TOKEN }}
-
           # Options
-          user: musicminion
-          template: classic
-          base: header
-          config_timezone: Asia/Shanghai
-          plugin_followup: yes
-          plugin_followup_sections: user
-          plugin_notable: yes
           plugin_rss: yes
           plugin_rss_source: http://blog.ayaka.space/rss2.xml
           plugin_rss_limit: 4
