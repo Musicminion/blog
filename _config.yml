@@ -100,6 +100,25 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins:
+  hexo-generator-feed
+
+
+#Feed Atom
+feed:
+  enable: true
+  type: 
+    - atom
+    - rss2
+  path:
+    - atom.xml
+    - rss2.xml
+  limit: 20
+  content_limit: 140
+  order_by: -date
+  autodiscovery: true
+
+
 ## Themes: https://hexo.io/themes/
 theme: fluid
 
