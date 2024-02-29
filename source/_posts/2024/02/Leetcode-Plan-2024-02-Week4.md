@@ -211,7 +211,7 @@ public:
   - 好了这个题目就写出来了
 - 仔细把这个图想的更一般一些，这个图里面**可以连通的合数节点**我们可以把他抽象成一个子图，然后对于这些子图，我们只需要做一次DFS就够了，这样可以节约时间，官方题解里面用了count数组，记录每个节点所在的子图中，节点的数量（反正都是连通的嘛）
 
-![演示图](./Leetcode-Plan-2024-02-Week4/day2-solution.png)
+![演示图](./day2-solution.png)
 
 最终的代码：
 
@@ -329,7 +329,7 @@ public:
 
 比如下面的这个图
 
-![题目图](./Leetcode-Plan-2024-02-Week4/binaryytreeedrawio-4.png)
+![题目图](./binaryytreeedrawio-4.png)
 
 
 ```
@@ -354,7 +354,7 @@ public:
 - 这样同理，右下角的黑框，3号节点，权值2，现在变成2+4=6。
 - 最后看1号节点，左边儿子权值8，右边6，只需要把6再加2，就可以变成左右权值一样！
 
-![yuque_diagram](./Leetcode-Plan-2024-02-Week4/day3-solution.jpg)
+![yuque_diagram](./day3-solution.jpg)
 
 AC代码如下！
 
