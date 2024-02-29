@@ -14,11 +14,11 @@ author: Musicminion
 >
 > 每天一题，如果很简单的，要求用c++和go两种语言写，如果是很难的可以只用c++写。
 
-|   日期   |                             周一                             |                             周二                             |                             周三                             | 周四 | 周五 | 周六 | 周日 | 统计率 |
-| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :--: | :--: | :--: | :--: | :----: |
-| 是否完成 |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |      |      |      |      |  3/7   |
-| 独立完成 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |                      :white_check_mark:                      |      |      |      |      |  2/7   |
-| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) | [2867](https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/) | [2673](https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/) |      |      |      |      |        |
+|   日期   |                             周一                             |                             周二                             |                             周三                             |                             周四                             | 周五 | 周六 | 周日 | 统计率 |
+| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :--: | :--: | :--: | :----: |
+| 是否完成 |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |      |      |      |  4/7   |
+| 独立完成 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |      |      |      |  2/7   |
+| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) | [2867](https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/) | [2673](https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/) | [2581](https://leetcode.cn/problems/count-number-of-possible-root-nodes) |      |      |      |        |
 
 ### 周一
 
