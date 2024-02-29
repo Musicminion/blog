@@ -395,3 +395,156 @@ public:
 ```
 
 浅说一下这题，例子没有给好，正好太特殊，底层全部变成3，就会给我一种错觉，所有的地方要把左右节点调整成一样的，实际上不是的，稍微举一反三就会找出正确的方法。
+
+### 周四
+
+Alice 有一棵 `n` 个节点的树，节点编号为 `0` 到 `n - 1` 。树用一个长度为 `n - 1` 的二维整数数组 `edges` 表示，其中 `edges[i] = [ai, bi]` ，表示树中节点 `ai` 和 `bi` 之间有一条边。
+
+Alice 想要 Bob 找到这棵树的根。她允许 Bob 对这棵树进行若干次 **猜测** 。每一次猜测，Bob 做如下事情：
+
+- 选择两个 **不相等** 的整数 `u` 和 `v` ，且树中必须存在边 `[u, v]` 。
+- Bob 猜测树中 `u` 是 `v` 的 **父节点** 。
+
+Bob 的猜测用二维整数数组 `guesses` 表示，其中 `guesses[j] = [uj, vj]` 表示 Bob 猜 `uj` 是 `vj` 的父节点。
+
+Alice 非常懒，她不想逐个回答 Bob 的猜测，只告诉 Bob 这些猜测里面 **至少** 有 `k` 个猜测的结果为 `true` 。
+
+给你二维整数数组 `edges` ，Bob 的所有猜测和整数 `k` ，请你返回可能成为树根的 **节点数目** 。如果没有这样的树，则返回 `0`。
+
+这题目今天的我也没做出来，只能说参考了一下别人的思路然后自己写出来了。这个题目有涉及到下面的一些考点：
+
+- 考点一：树的DFS（dfs这个我觉得得多写，不同的图的DFS还是略有区别，当然本质是递归）
+  - 比如要在二维的一个地图里面，跑DFS，就需要标记那些节点已经走过了
+  - 如果在一个树里面DFS，那就只**需要标记来源的节点**（然后走的时候，只要不是来的父亲节点，都可以走）。因为我们在保存树的时候，是会保存`A->B`，还有`B->A`两个信息的（比如这个题，当然要是那些父子节点分明的，那就不需要）
+- 考点二：hash map。这个题目需要快速的查询guesses，需要知道一个边是否在guesses里面，所以需要一个哈希map。
+  - 我个人写代码到时候习惯用二维数组，但是这个题目二维数组会超时！
+  - map是基于红黑树实现，unordered_map是基于hash_table实现，把数据的存储和查找消耗的时间大大降低，几乎可以看成是常数时间。这个题目里面会用到大量的查询，如果直接用map肯定是会寄的！
+- 难点三：假设X的儿子是Y，理解当X是根节点（猜对的数量是$a_x$），和翻转后Y是根节点（猜对的数量是$a_y$），猜对的数量是会怎么变？
+  - 如果只存在`[X->Y]`的guess，不存在`[Y-X]`的guess，那么$a_y = a_x - 1$（翻转后原来的X-Y猜测X是根节点，所以要减1）
+  - 如果只存在`[Y->X]`的guess，不存在`[X->Y]`的guess，那么$a_y = a_x + 1$​
+  - 如果存在`[Y->X]`的guess，也存在`[X->Y]`的guess，那么$a_y = a_x$
+
+```cpp
+int N = 0;
+int node0RootOknums  = 0;
+map<int, map<int, bool>> hashGuesses;
+unordered_set<long long> s;
+
+// int [100005][100005];
+
+class Solution {
+private:
+public:
+    // 检查是否在猜测中
+    bool ifExistInGuess(long long int startNode,long long  int endNode){
+        // 之前我用的二维map，说实话降低了速度，看了题解后才优化
+        // if(hashGuesses.count(startNode) == 0)
+        //     return false;
+        // map<int, bool> tmp = hashGuesses[startNode];
+        // if(tmp.count(endNode) == 0)
+        //     return false;
+        // return hashGuesses[startNode][endNode];
+
+        return s.count(startNode << 32 | endNode);
+    }
+
+    void insertIntoGuess(long long int startNode,long long int endNode){
+        // hashGuesses[startNode][endNode] = 1;
+        long long int llst = startNode;
+        long long int llend = endNode;
+        s.insert(startNode << 32 | endNode);
+    }
+
+
+    void dfs(int curNode, vector<vector<int>>& tree, int fromNode){
+        vector<int> nextAvai = tree[curNode];
+        for(int i = 0; i < nextAvai.size(); i++){
+            // 避免走回去了，记录一个从哪里来！
+            int nextNode = nextAvai[i];
+
+            if(nextNode == fromNode){
+                continue;
+            }
+            
+            if(ifExistInGuess(curNode, nextNode)){
+                node0RootOknums++;
+            }
+            dfs(nextNode, tree, curNode);   
+        }
+    }
+
+    // 
+    void dfsV2(int curNode, vector<vector<int>>& tree, vector<int>& nodeGuessOkNum,int fromNode){
+        vector<int> nextAvai = tree[curNode];
+        for(int i = 0; i < nextAvai.size(); i++){
+            int nextNode = nextAvai[i];
+            // 避免走回去了，记录一个从哪里来！
+            if(nextNode == fromNode){
+                continue;
+            }
+
+            // base应该基于当前的,之前我搞糊涂了
+            nodeGuessOkNum[nextNode] =  nodeGuessOkNum[curNode];
+            if(ifExistInGuess(curNode, nextNode)){
+                nodeGuessOkNum[nextNode]--;
+            }
+            if(ifExistInGuess(nextNode, curNode)){
+                nodeGuessOkNum[nextNode]++;
+            }
+            
+            dfsV2(nextNode, tree, nodeGuessOkNum, curNode);
+        }
+    }
+    
+    int rootCount(vector<vector<int>>& edges, vector<vector<int>>& guesses, int k) {
+        // N:节点的数量 
+        N = edges.size() + 1;
+        node0RootOknums = 0;
+        hashGuesses.clear();
+        s.clear();
+
+        // 初始化用来反正
+        vector<int> emptyVec;
+        vector<vector<int>> Tree(N, emptyVec);
+        // 怎么存这个树?
+        for(int i = 0; i < edges.size(); i++){
+            vector<int> edge = edges[i];
+            int startNode = edge[0];
+            int endNode = edge[1];
+            Tree[startNode].push_back(endNode);
+            // 记得要双向push不要只单向哦
+            Tree[endNode].push_back(startNode);
+        }
+
+        // 然后还需要对于guesses处理，我习惯用map
+        // 因为要加快查询
+        for(int j = 0; j < guesses.size(); j++){
+            vector<int> oneGuess = guesses[j];
+            int startNode = oneGuess[0];
+            int endNode = oneGuess[1];
+            insertIntoGuess(startNode, endNode);
+        }
+
+        // 把树准备好之后，再开始dfs，从节点0开始dfs
+        // 树的dfs不需要标记ifvisited，因为没有环路（！
+        dfs(0, Tree, -1);
+        // // 节点i如果是根节点，对应的猜对的次数
+
+        vector<int> nodeGuessOkNum(N, node0RootOknums);
+        
+        // 再跑一次?
+        dfsV2(0, Tree, nodeGuessOkNum, -1);
+
+        int result = 0;
+        for(int j = 0; j < nodeGuessOkNum.size(); j++){
+            if(nodeGuessOkNum[j] >= k)
+                result++;
+        }
+
+        return result;
+    }
+};
+```
+
+
+
