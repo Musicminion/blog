@@ -211,7 +211,7 @@ public:
   - 好了这个题目就写出来了
 - 仔细把这个图想的更一般一些，这个图里面**可以连通的合数节点**我们可以把他抽象成一个子图，然后对于这些子图，我们只需要做一次DFS就够了，这样可以节约时间，官方题解里面用了count数组，记录每个节点所在的子图中，节点的数量（反正都是连通的嘛）
 
-![演示图](./day2-solution.png)
+![演示图](./Leetcode-Plan-2024-02-Week4/day2-solution.png)
 
 最终的代码：
 
@@ -329,7 +329,7 @@ public:
 
 比如下面的这个图
 
-![题目图](./binaryytreeedrawio-4.png)
+![题目图](./Leetcode-Plan-2024-02-Week4/binaryytreeedrawio-4.png)
 
 
 ```
@@ -354,7 +354,7 @@ public:
 - 这样同理，右下角的黑框，3号节点，权值2，现在变成2+4=6。
 - 最后看1号节点，左边儿子权值8，右边6，只需要把6再加2，就可以变成左右权值一样！
 
-![yuque_diagram](./day3-solution.jpg)
+![yuque_diagram](./Leetcode-Plan-2024-02-Week4/day3-solution.jpg)
 
 AC代码如下！
 
@@ -546,5 +546,65 @@ public:
 };
 ```
 
+### 周五
 
+给你一个下标从 **0** 开始的整数数组 `nums` ，你必须将数组划分为一个或多个 **连续** 子数组。
+
+如果获得的这些子数组中每个都能满足下述条件 **之一** ，则可以称其为数组的一种 **有效** 划分：
+
+1. 子数组 **恰** 由 `2` 个相等元素组成，例如，子数组 `[2,2]` 。
+2. 子数组 **恰** 由 `3` 个相等元素组成，例如，子数组 `[4,4,4]` 。
+3. 子数组 **恰** 由 `3` 个连续递增元素组成，并且相邻元素之间的差值为 `1` 。例如，子数组 `[3,4,5]` ，但是子数组 `[1,3,5]` 不符合要求。
+
+如果数组 **至少** 存在一种有效划分，返回 `true` ，否则，返回 `false` 。
+
+> 今天也是小丑的一天，不知道为什么又没有做出来。这个题目是DP。
+
+其实一点就通，这个题目是nums数组为有效数组，则下面的条件一定有一个满足：
+
+- 最后三个元素是满足有效划分，且前面的部分满足有效划分
+- 最后两个元素相等，且前面的部分满足有效划分
+
+那这么下来，你可以说是个dp，也可以说是个分治法，或者说成是递归。那么代码也就很好写了。
+
+- 我下面的代码里面写了两个possible变量，就是分开对上面两种情况求解。
+- 最后我为了优化防止超时，如果第一个可以，直接就可以返回true了，不能再去递归第二个，省时间。
+
+```cpp
+class Solution {
+public:
+    bool verifyThreeNum(int num1, int num2, int num3){
+        if(num1 == num2 && num1 == num3)
+            return true;
+        if(num1 + 1 == num2 && num2 + 1 == num3)
+            return true;
+        return false;
+    }
+
+    // [start, end]
+    bool validPartitionWithRange(vector<int>& nums, int start, int end){
+        // cout << start << " " << end << endl;
+
+        if(end - start < 1)
+            return false;
+        if(end - start == 1)
+            return nums[start] == nums[end];
+        if(end - start == 2)
+            return verifyThreeNum(nums[start], nums[start + 1], nums[start + 2]);
+        
+        bool possible1 = (nums[end] == nums[end - 1]) && validPartitionWithRange(nums, start, end - 2);
+
+        if(possible1)
+            return true;
+
+        bool possible2 = verifyThreeNum(nums[end - 2], nums[end - 1], nums[end]) && validPartitionWithRange(nums, start, end - 3);
+
+        return possible2;
+    }
+
+    bool validPartition(vector<int>& nums) {
+        return validPartitionWithRange(nums, 0, nums.size() - 1);      
+    }
+};
+```
 
