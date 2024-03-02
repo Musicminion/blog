@@ -8,17 +8,17 @@ banner_img: 2024/02/Leetcode-Plan-2024-02-Week4/打卡.png
 author: Musicminion
 ---
 
-## Leetcode计划：2024年二月第四周
+## Leetcode计划(全勤完结)：2024年二月第四周
 
 > 由于本人寒假摸鱼，大四上学期一直在考研，寒假又在摸（原）鱼（神），所以曾经熟练的c++又变得生疏了起来，Leetcode是时候启动了！在不启动考研机考都要慌了！目前的计划是：
 >
 > 每天一题，如果很简单的，要求用c++和go两种语言写，如果是很难的可以只用c++写。
 
-|   日期   |                             周一                             |                             周二                             |                             周三                             |                             周四                             | 周五 | 周六 | 周日 | 统计率 |
-| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :--: | :--: | :--: | :----: |
-| 是否完成 |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |      |      |      |  4/7   |
-| 独立完成 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |      |      |      |  2/7   |
-| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) | [2867](https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/) | [2673](https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/) | [2581](https://leetcode.cn/problems/count-number-of-possible-root-nodes) |      |      |      |        |
+|   日期   |                             周一                             |                             周二                             |                             周三                             |                             周四                             |                             周五                             |                             周六                             |                             周日                             | 统计率 |
+| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----: |
+| 是否完成 |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |                      :white_check_mark:                      |  7/7   |
+| 独立完成 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |                      :white_check_mark:                      |                :negative_squared_cross_mark:                 |                :negative_squared_cross_mark:                 |                      :white_check_mark:                      |                      :white_check_mark:                      |  4/7   |
+| 题目链接 | [938](https://leetcode.cn/problems/range-sum-of-bst/description/) | [2867](https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/) | [2673](https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/) | [2581](https://leetcode.cn/problems/count-number-of-possible-root-nodes) | [2369](https://leetcode.cn/problems/check-if-there-is-a-valid-partition-for-the-array) | [2368](https://leetcode.cn/problems/reachable-nodes-with-restrictions/) | [225](https://leetcode.cn/problems/implement-stack-using-queues/) |        |
 
 ### 周一
 
@@ -211,7 +211,7 @@ public:
   - 好了这个题目就写出来了
 - 仔细把这个图想的更一般一些，这个图里面**可以连通的合数节点**我们可以把他抽象成一个子图，然后对于这些子图，我们只需要做一次DFS就够了，这样可以节约时间，官方题解里面用了count数组，记录每个节点所在的子图中，节点的数量（反正都是连通的嘛）
 
-![演示图](./day2-solution.png)
+![演示图](./Leetcode-Plan-2024-02-Week4/day2-solution.png)
 
 最终的代码：
 
@@ -329,7 +329,7 @@ public:
 
 比如下面的这个图
 
-![题目图](./binaryytreeedrawio-4.png)
+![题目图](./Leetcode-Plan-2024-02-Week4/binaryytreeedrawio-4.png)
 
 
 ```
@@ -354,7 +354,7 @@ public:
 - 这样同理，右下角的黑框，3号节点，权值2，现在变成2+4=6。
 - 最后看1号节点，左边儿子权值8，右边6，只需要把6再加2，就可以变成左右权值一样！
 
-![yuque_diagram](./day3-solution.jpg)
+![yuque_diagram](./Leetcode-Plan-2024-02-Week4/day3-solution.jpg)
 
 AC代码如下！
 
@@ -606,5 +606,98 @@ public:
         return validPartitionWithRange(nums, 0, nums.size() - 1);      
     }
 };
+```
+
+### 周六
+
+现有一棵由 `n` 个节点组成的无向树，节点编号从 `0` 到 `n - 1` ，共有 `n - 1` 条边。
+
+给你一个二维整数数组 `edges` ，长度为 `n - 1` ，其中 `edges[i] = [ai, bi]` 表示树中节点 `ai` 和 `bi` 之间存在一条边。另给你一个整数数组 `restricted` 表示 **受限** 节点。
+
+在不访问受限节点的前提下，返回你可以从节点 `0` 到达的 **最多** 节点数目*。*
+
+注意，节点 `0` **不** 会标记为受限节点。
+
+说实话这是这周起码第二个dfs的树的题目，写一下就能知道。递归搜索能到的地方。
+
+```c++
+class Solution {
+public:
+    int dfs(int fromNode, int curNode,map<int, vector<int>>& data, unordered_map<int, bool>& forbiddenNode){
+        if(forbiddenNode.count(curNode) == 1)
+            return 0;
+        
+        int res = 1;
+
+        if(data.count(curNode) == 0)
+            return res;
+        
+        vector<int> nextAvai = data[curNode];
+
+        for(int j = 0; j < nextAvai.size(); j++){
+            if(nextAvai[j] == fromNode)
+                continue;
+            res += dfs(curNode, nextAvai[j], data, forbiddenNode);
+        }
+
+        return res;
+    }
+
+    int reachableNodes(int n, vector<vector<int>>& edges, vector<int>& restricted) {
+        // vector<int> vec;
+        map<int, vector<int>> data;
+        unordered_map<int, bool> forbiddenNode;
+
+        for(int i = 0; i < edges.size(); i++){
+            int start = edges[i][0];
+            int end = edges[i][1];
+
+            data[start].push_back(end);
+            data[end].push_back(start);
+        }
+
+        for(int j = 0; j < restricted.size(); j++){
+            forbiddenNode[restricted[j]] = true;
+        }
+
+
+        return dfs(-1, 0, data, forbiddenNode);
+    }
+};
+```
+
+### 周日
+
+收尾题目，简单。
+
+```cpp
+class MyStack {
+private:
+    list<int> data;
+
+public:
+    MyStack() { data.clear(); }
+
+    void push(int x) { data.push_front(x); }
+
+    int pop() { 
+        int res = data.front();
+        data.pop_front(); 
+        return res;
+    }
+
+    int top() { return data.front(); }
+
+    bool empty() { return data.empty(); }
+};
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
 ```
 
