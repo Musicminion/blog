@@ -113,8 +113,10 @@ feed:
   path:
     - atom.xml
     - rss2.xml
+  content:
   limit: 20
   content_limit: 140
+  content_limit_delim: ' '
   order_by: -date
   autodiscovery: true
 
