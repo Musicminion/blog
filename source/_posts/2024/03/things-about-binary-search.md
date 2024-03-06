@@ -1,6 +1,6 @@
 ---
 title: 二分查找的四种写法
-tags: [二分查找, 算法, 软件开发, 面试经验]
+tags: [二分查找, 算法, 软件开发, 面试经验, leetcode]
 date: 2024-03-06 17:33:00
 updated: 2024-03-06 17:33:00
 index_img: 2024/03/things-about-binary-search/leetcode.png
