@@ -3,8 +3,8 @@ title: 算法汇总
 tags: [算法, C++, Leetcode]
 date: 2024-03-20 00:09:01
 updated: 2024-03-20 00:09:01
-# index_img: 2024/03/Diva8-A-Game-Website-Disappeared-6-Years-Ago/diva8-main.png
-# banner_img: 2024/03/Diva8-A-Game-Website-Disappeared-6-Years-Ago/diva8-main.png
+index_img: 2024/03/common-algorithm/banner.png
+banner_img: 2024/03/common-algorithm/banner.png
 author: Musicminion
 ---
 
