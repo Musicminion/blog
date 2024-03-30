@@ -14,11 +14,11 @@ author: Musicminion
 >
 > 每天一题，如果很简单的，要求用c++和go两种语言写，如果是很难的可以只用c++写。
 
-|   日期   |        周一        |        周二        |        周三        | 周四 | 周五 | 周六 | 周日 | 统计率 |
-| :------: | :----------------: | :----------------: | :----------------: | :--: | :--: | :--: | :--: | :----: |
-| 是否完成 | :white_check_mark: | :white_check_mark: | :white_check_mark: |      |      |      |      |  3/7   |
-| 独立完成 | :white_check_mark: | :white_check_mark: | :white_check_mark: |      |      |      |      |  3/7   |
-| 题目编号 |        232         |        1976        |        2917        |      |      |      |      |        |
+|   日期   |        周一        |        周二        |        周三        |        周四        |        周五        |             周六              |        周日        | 统计率 |
+| :------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :---------------------------: | :----------------: | :----: |
+| 是否完成 | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :negative_squared_cross_mark: | :white_check_mark: |  6/7   |
+| 独立完成 | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :negative_squared_cross_mark: | :white_check_mark: |  6/7   |
+| 题目编号 |        232         |        1976        |        2917        |        2576        |        2834        |             2386              |        299         |        |
 
 ### 周一
 
@@ -205,6 +205,184 @@ public:
         }
 
         return res;
+    }
+};
+```
+
+### 周四
+
+给你一个下标从 **0** 开始的字符串 `word` ，长度为 `n` ，由从 `0` 到 `9` 的数字组成。另给你一个正整数 `m` 。
+
+`word` 的 **可整除数组** `div` 是一个长度为 `n` 的整数数组，并满足：
+
+- 如果 `word[0,...,i]` 所表示的 **数值** 能被 `m` 整除，`div[i] = 1`
+- 否则，`div[i] = 0`
+
+返回 `word` 的可整除数组。
+
+```cpp
+class Solution {
+public:
+    vector<int> divisibilityArray(string word, int m) {
+        int n = word.size();
+        vector<int> div = vector(n, 0);
+        // cout << "e\n";
+        for(int i = 0; i < word.size(); i++){
+            int curNum = word[i] - '0';
+            //  cout << "f\n";
+            if(i == 0 || div[i - 1] == 0){
+                div[i] = curNum % m;
+            }
+            // 前一个不可以整除
+            else if(div[i - 1] != 0){
+                //  998 % 5 = 2
+                // 9980 % 5 = 
+                // 
+                long long int last = div[i - 1];
+                long long int tmp =  last * (10 % m) + curNum;
+                div[i] = (tmp) % m;
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            if(div[i] > 0)
+                div[i] = 0;
+            else 
+                div[i] = 1;
+        }
+
+        return div;
+    }
+};
+```
+
+### 周五
+
+给你两个正整数：`n` 和 `target` 。
+
+如果数组 `nums` 满足下述条件，则称其为 **美丽数组** 。
+
+- `nums.length == n`.
+- `nums` 由两两互不相同的正整数组成。
+- 在范围 `[0, n-1]` 内，**不存在** 两个 **不同** 下标 `i` 和 `j` ，使得 `nums[i] + nums[j] == target` 。
+
+返回符合条件的美丽数组所可能具备的 **最小** 和，并对结果进行取模 `109 + 7`。
+
+```cpp
+class Solution {
+public:
+    int minimumPossibleSum(int n, int target) {
+        long long int lln = n;
+        long long int llt = target;
+        // 10 0000 0000
+        long long int mod = 1e9 + 7;
+        // n = 5 target = 4
+        // [1, 2, 4, 5, 6]
+        // x3  
+
+        unsigned long long int mid = target / 2;
+
+        if(n <= mid){
+            // 1 2 3  ... n
+            return (n * (n + 1) / 2) % mod;
+        }
+
+        else {
+            // 1 2 3 ... mid  
+            // target  target + 1 ... 
+            return ((mid * (mid + 1) / 2) % mod + (llt + llt + lln - mid - 1) * (lln - mid) / 2 % mod ) % mod;
+        }
+    }
+};
+```
+
+### 周六
+
+给你一个整数数组 `nums` 和一个 **正** 整数 `k` 。你可以选择数组的任一 **子序列** 并且对其全部元素求和。
+
+数组的 **第 k 大和** 定义为：可以获得的第 `k` 个 **最大** 子序列和（子序列和允许出现重复）
+
+返回数组的 **第 k 大和** 。
+
+子序列是一个可以由其他数组删除某些或不删除元素派生而来的数组，且派生过程不改变剩余元素的顺序。
+
+**注意：**空子序列的和视作 `0` 。
+
+```cpp
+class Solution {
+public:
+    long long kSum(vector<int>& nums, int k) {
+        long long mx = 0;
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] > 0) {
+                mx += nums[i];
+            } else {
+                nums[i] *= -1;
+            }
+        }
+        sort(nums.begin(), nums.end());
+        using pli = pair<long long, int>;
+        priority_queue<pli, vector<pli>, greater<pli>> pq;
+        pq.push({0, 0});
+        while (--k) {
+            auto p = pq.top();
+            pq.pop();
+            long long s = p.first;
+            int i = p.second;
+            if (i < n) {
+                pq.push({s + nums[i], i + 1});
+                if (i) {
+                    pq.push({s + nums[i] - nums[i - 1], i + 1});
+                }
+            }
+        }
+        return mx - pq.top().first;
+    }
+};
+```
+
+### 周日
+
+你在和朋友一起玩 [猜数字（Bulls and Cows）](https://baike.baidu.com/item/猜数字/83200?fromtitle=Bulls+and+Cows&fromid=12003488&fr=aladdin)游戏，该游戏规则如下：
+
+写出一个秘密数字，并请朋友猜这个数字是多少。朋友每猜测一次，你就会给他一个包含下述信息的提示：
+
+- 猜测数字中有多少位属于数字和确切位置都猜对了（称为 "Bulls"，公牛），
+- 有多少位属于数字猜对了但是位置不对（称为 "Cows"，奶牛）。也就是说，这次猜测中有多少位非公牛数字可以通过重新排列转换成公牛数字。
+
+给你一个秘密数字 `secret` 和朋友猜测的数字 `guess` ，请你返回对朋友这次猜测的提示。
+
+提示的格式为 `"xAyB"` ，`x` 是公牛个数， `y` 是奶牛个数，`A` 表示公牛，`B` 表示奶牛。
+
+请注意秘密数字和朋友猜测的数字都可能含有重复数字。
+
+```cpp
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int x = 0;
+        int y = 0;
+        map<char, int> sMap;
+        map<char, int> gMap;
+        map<char, int> sameMap;
+        for(int i = 0; i < secret.size(); i++){
+            if(secret[i] == guess[i]){
+                x++;
+                continue;
+            }
+            sMap[secret[i]]++;
+            gMap[guess[i]]++;
+        }
+
+        
+        for(auto iter = sMap.begin(); iter != sMap.end(); iter++){
+            if(gMap.count(iter->first) == 1){
+                y += min(iter->second, gMap[iter->first]);
+            }
+        }
+
+        return to_string(x) + "A" + to_string(y) + "B";
     }
 };
 ```
