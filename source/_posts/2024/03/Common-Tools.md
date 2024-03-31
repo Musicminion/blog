@@ -6,6 +6,7 @@ updated: 2024-03-31 21:36:01
 index_img: 2024/03/Common-Tools/GenP-Website.png
 banner_img: 2024/03/Common-Tools/GenP-Website.png
 author: Musicminion
+typora-root-url: ./Common-Tools
 ---
 
 ## 常用工具汇总
@@ -17,6 +18,8 @@ author: Musicminion
 ### 一、影视/视频
 
 #### 1）Adobe全家桶 (win)
+
+> 视频剪辑/PDF编辑。非常好用的工具。
 
 对于windows推荐：[GenP](https://www.reddit.com/r/GenP/)。需要下载的文件，只有两个：
 
@@ -38,23 +41,49 @@ author: Musicminion
 
 #### 2）B站视频下载 (win/mac/linux)
 
-推荐[唧唧 - JiJiDown - 电脑客户端](http://client.jijidown.com/)，下载好安装就好。
+> 下载一些B站的视频素材，或者网课，然后转到飞书语音转文字。
+
+推荐[唧唧JiJiDown电脑客户端](http://client.jijidown.com/)，下载好安装就好。还有一些来自我兄弟的推荐：
+
+- https://github.com/the1812/Bilibili-Evolved
+- https://github.com/SocialSisterYi/bilibili-API-collect
+- https://github.com/nICEnnnnnnnLee/BilibiliDown
+- https://github.com/HCLonely/awesome-bilibili-extra
+- https://github.com/sodaling/FastestBilibiliDownloader
+- https://github.com/1250422131/bilibilias
+- https://github.com/JimmyLiang-lzm/biliDownloader_GUI
+- https://github.com/stevenjoezhang/bilibili-downloader
 
 #### 3）Youtube视频下载 (win/mac/linux)
 
+> 暂时推荐下面的这个：
+
+- [aandrew-me/ytDownloader: A modern GUI App for downloading Videos and Audios from hundreds of sites (github.com)](https://github.com/aandrew-me/ytDownloader)
+
 #### 4）blender
 
-> 非常好的3D，使我的2D旋转。
+> 非常好的3D，使我的2D旋转，MMD/建模等用途。
 
 - [3.6 LTS — blender.org](https://www.blender.org/download/releases/3-6/)
 - [3.3 LTS — blender.org](https://www.blender.org/download/releases/3-3/)
 - [2.93 LTS — blender.org](https://www.blender.org/download/releases/2-93/)
 
+#### 5）音乐解锁
+
+> 解锁网易云/QQ音乐等保护的音乐。
+
+- [um/um-react 源代码](https://git.unlock-music.dev/um/um-react)
+- [um/um-react 主站)](https://git.unlock-music.dev/um/um-react)
+
 ### 二、开发工具
 
 #### 1）WSL管理器 (win)
 
+> 众所周知WSL开发很方便，但是电脑上面可能有多个WSL，比如ubuntu20的，ubuntu22的，所以一个管理工具很重要了。
+
 Windows没有自带wsl的管理器，反而只能一个ubuntu版本一直用，要想要管理机器上的多个wsl容器，可以使用[bostrot/wsl2-distro-manager](https://github.com/bostrot/wsl2-distro-manager)，App Store有付费的版本（捐赠用），Github上免费下载。
 
+#### 2）Navicat
 
+> 数据库管理工具，待更新
 
