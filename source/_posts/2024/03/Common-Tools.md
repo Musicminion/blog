@@ -24,7 +24,7 @@ author: Musicminion
 - 一个是GenP，是个补丁工具，用来给软件打补丁
 - 下载的方法如下图所示！
 
-![GenP-Website](./Common-Tools/GenP-Website.png)
+![GenP-Website](./GenP-Website.png)
 
 安装步骤：
 
