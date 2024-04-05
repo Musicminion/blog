@@ -2,7 +2,7 @@
 title: 常用工具汇总
 tags: [工具, 资源站]
 date: 2024-03-31 20:56:01
-updated: 2024-03-31 21:36:01
+updated: 2024-04-05 15:22:01
 index_img: 2024/03/Common-Tools/GenP-Website.png
 banner_img: 2024/03/Common-Tools/GenP-Website.png
 author: Musicminion
@@ -11,7 +11,7 @@ typora-root-url: ./Common-Tools
 
 ## 常用工具汇总
 
-> 今天开一期博客唠一唠个人常用的一些工具，以免每次要用的时候都找不到！尤其是什么Adobe全家桶。
+> 今天开一期博客唠一唠个人常用的一些工具，以免每次要用的时候都找不到！尤其是什么Adobe全家桶。每次重新装机都需要用到，有时候甚至不小心会忘记了，所有的链接都是网站官网。
 
 [TOC]
 
@@ -87,3 +87,39 @@ Windows没有自带wsl的管理器，反而只能一个ubuntu版本一直用，�
 
 > 数据库管理工具，待更新
 
+### 三、日用工具
+
+#### 1）压缩软件 (win/mac)
+
+> 因为压缩软件是在太多，这里直接汇总：
+
+Windows用的：
+
+- [WinRAR 压缩软件(中文站)](https://www.winrar.com.cn/)
+- [WinRAR archiver(国际站))](https://www.rarlab.com/)
+
+Mac用的：
+
+- [Keka - macOS 压缩文件管理器](https://www.keka.io/zh-cn/)
+- [The Unarchiver | Top Free Unarchiving Software for macOS](https://theunarchiver.com/)
+
+#### 2）PDF 虚拟打印机 (mac)
+
+> Mac里面经常可能需求，比如把好几页A4的PDF合并到另外一个A3的PDF；再或者需要把PDF转化为打印稿（图像输出）。总之或者希望调试一下打印输出的文件，就用这个了。
+
+- 下载链接：[rodyager/RWTS-PDFwriter](https://github.com/rodyager/RWTS-PDFwriter)
+- 图片效果：
+
+<img src="./Utility.png" alt="Utility" style="zoom:40%;" />
+
+#### 3）OBS录屏软件 (win/mac/linux)
+
+> 比较惊喜的一件事情是，mac现在也可以支持内录声音了，非常好的OBS，使我的直播旋转。
+
+- [下载链接](https://obsproject.com/)
+
+#### 4）检测屏幕 (mac)
+
+> 一个很奇怪的软件，比如你担心自己电脑屏幕有没有坏点，那就用这个检测一下，跑一下就可以看到，和苹果店的检测是一个效果
+
+- [App Store (Mac) 下载链接](https://apps.apple.com/tt/app/pixelstester-test-monitors/id1613340764)
