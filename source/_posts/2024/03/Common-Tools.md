@@ -11,7 +11,7 @@ typora-root-url: ./Common-Tools
 
 ## 常用工具汇总
 
-> 今天开一期博客唠一唠个人常用的一些工具，以免每次要用的时候都找不到！尤其是什么Adobe全家桶。每次重新装机都需要用到，有时候甚至不小心会忘记了，所有的链接都是网站官网。
+> 今天开一期博客唠一唠个人常用的一些工具，以免每次要用的时候都找不到！尤其是什么Adobe全家桶。每次重新装机都需要用到，有时候甚至不小心会忘记了曾经有个软件叫什么，文章里面的链接都是网站官网。
 
 [TOC]
 
@@ -60,7 +60,7 @@ typora-root-url: ./Common-Tools
 
 - [aandrew-me/ytDownloader: A modern GUI App for downloading Videos and Audios from hundreds of sites (github.com)](https://github.com/aandrew-me/ytDownloader)
 
-#### 4）blender
+#### 4）blender (win/mac/linux)
 
 > 非常好的3D，使我的2D旋转，MMD/建模等用途。
 
@@ -68,12 +68,12 @@ typora-root-url: ./Common-Tools
 - [3.3 LTS — blender.org](https://www.blender.org/download/releases/3-3/)
 - [2.93 LTS — blender.org](https://www.blender.org/download/releases/2-93/)
 
-#### 5）音乐解锁
+#### 5）下载音乐解锁 (browser)
 
-> 解锁网易云/QQ音乐等保护的音乐。
+> 解锁网易云/QQ音乐等下载下来保护的音乐。
 
 - [um/um-react 源代码](https://git.unlock-music.dev/um/um-react)
-- [um/um-react 主站)](https://git.unlock-music.dev/um/um-react)
+- [um/um-react 主站](https://git.unlock-music.dev/um/um-react)
 
 ### 二、开发工具
 
@@ -81,11 +81,18 @@ typora-root-url: ./Common-Tools
 
 > 众所周知WSL开发很方便，但是电脑上面可能有多个WSL，比如ubuntu20的，ubuntu22的，所以一个管理工具很重要了。
 
-Windows没有自带wsl的管理器，反而只能一个ubuntu版本一直用，要想要管理机器上的多个wsl容器，可以使用[bostrot/wsl2-distro-manager](https://github.com/bostrot/wsl2-distro-manager)，App Store有付费的版本（捐赠用），Github上免费下载。
+Windows没有自带wsl的管理器，反而只能一个ubuntu版本一直用，要想要管理机器上的多个wsl容器，可以使用[bostrot/wsl2-distro-manager](https://github.com/bostrot/wsl2-distro-manager)，Windows 的 App Store有付费的版本（捐赠用），Github上免费下载。
 
 #### 2）Navicat
 
 > 数据库管理工具，待更新
+
+#### 3）Github TOC 生成
+
+> Github本身不支持TOC目录，得自己生成，那就这个了恐怕只能。但是我想要的是可以直接替换[TOC]的啊！
+
+- Bash 脚本实现的：[github-markdown-toc](https://github.com/ekalinin/github-markdown-toc)
+- Go 实现的：[github-markdown-toc.go](https://github.com/ekalinin/github-markdown-toc.go)
 
 ### 三、日用工具
 
@@ -123,3 +130,4 @@ Mac用的：
 > 一个很奇怪的软件，比如你担心自己电脑屏幕有没有坏点，那就用这个检测一下，跑一下就可以看到，和苹果店的检测是一个效果
 
 - [App Store (Mac) 下载链接](https://apps.apple.com/tt/app/pixelstester-test-monitors/id1613340764)
+
