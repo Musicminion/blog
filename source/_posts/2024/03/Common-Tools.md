@@ -2,7 +2,7 @@
 title: 常用工具汇总
 tags: [工具, 资源站]
 date: 2024-03-31 20:56:01
-updated: 2024-04-05 15:22:01
+updated: 2024-04-09 20:00:00
 index_img: 2024/03/Common-Tools/GenP-Website.png
 banner_img: 2024/03/Common-Tools/GenP-Website.png
 author: Musicminion
@@ -92,6 +92,10 @@ Windows没有自带wsl的管理器，反而只能一个ubuntu版本一直用，�
 
 - Bash 脚本实现的：[github-markdown-toc](https://github.com/ekalinin/github-markdown-toc)
 - Go 实现的：[github-markdown-toc.go](https://github.com/ekalinin/github-markdown-toc.go)
+
+#### 4）Docker Desktop K8s安装
+
+- 因为K8s所在的容器镜像访问有问题，所以阿里云提供了为Docker Desktop for Mac/Windows开启Kubernetes和Istio：[AliyunContainerService/k8s-for-docker-desktop](https://github.com/AliyunContainerService/k8s-for-docker-desktop)
 
 ### 三、日用工具
 
