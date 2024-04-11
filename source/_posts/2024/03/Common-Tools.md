@@ -2,7 +2,7 @@
 title: 常用工具汇总
 tags: [工具, 资源站]
 date: 2024-03-31 20:56:01
-updated: 2024-04-09 20:00:00
+updated: 2024-04-11 15:00:00
 index_img: 2024/03/Common-Tools/GenP-Website.png
 banner_img: 2024/03/Common-Tools/GenP-Website.png
 author: Musicminion
@@ -96,6 +96,35 @@ Windows没有自带wsl的管理器，反而只能一个ubuntu版本一直用，�
 #### 4）Docker Desktop K8s安装
 
 - 因为K8s所在的容器镜像访问有问题，所以阿里云提供了为Docker Desktop for Mac/Windows开启Kubernetes和Istio：[AliyunContainerService/k8s-for-docker-desktop](https://github.com/AliyunContainerService/k8s-for-docker-desktop)
+
+#### 5）API调试工具（集群、内网）
+
+> 比如说apifox，postman之类的已经看惯了，但是总有一些小众的需求，比如要在k8s集群里面调试API，要在docker-compose集群里面调试API，那我推荐hoppscotch
+
+```yaml
+services:
+  # ... 此处省略您别的service
+  # ...
+  
+  # API 调试工具，proxy用于docker-compose内部访问的代理
+  hoppscotch-frontend:
+    image: hoppscotch/hoppscotch-frontend:latest
+    ports:
+      - "9100:3000"
+
+  hoppscotch-proxy:
+    image: hoppscotch/proxyscotch:latest
+    environment:
+      - PORT=9159
+    ports:
+      - "9159:9159"
+```
+
+然后打开浏览器，在你的`localhost:9100`里面就可以看到调试界面了，记得打开代理，并把代理设置为：`http://localhost:9159`。注意，中文也是可以选择的，界面很好看！
+
+![hoppscotch 效果图](./hoppscotch.png)
+
+
 
 ### 三、日用工具
 
