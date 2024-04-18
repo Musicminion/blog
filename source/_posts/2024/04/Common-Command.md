@@ -23,7 +23,36 @@ adduser ayaka
 usermod -aG sudo ayaka
 ```
 
-#### 2）Linux 生成密钥对
+#### 2）Linux sudo免密码
+
+```bash
+# 首先给这个增加写权限
+chmod u+w /etc/sudoers
+# 编辑这个文件
+nano /etc/sudoers
+# 最后还原，确保没有写权限
+chmod u-w /etc/sudoers
+```
+
+然后编辑内容：
+
+```bash
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+# Members of the admin group may gain root privileges
+%admin  ALL=(ALL) ALL 
+
+# [阿里云轻量] 把上面的修改成 %admin ALL=(ALL:ALL) NOPASSWD: ALL，可以让管理员免密sudo
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+# [sudo全部免密] 或者这里，根据你的需要修改
+
+# [仅特定用户] 下面的user是你的用户名 添加这一行就能免密sudo了
+# user ALL=(ALL:ALL) NOPASSWD: ALL
+```
+
+#### 3）Linux 生成密钥对
 
 - 第一步：在服务器/你的windows电脑，生成密钥对（密钥只要可以**配对**，不管在哪生成的），建议就保存在默认的位置
 
