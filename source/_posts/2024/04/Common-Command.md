@@ -86,6 +86,14 @@ IdentityFile D:/key/id_rsa(改成你的密钥位置，windows还需要自行修�
 PasswordAuthentication no
 ```
 
+#### 4）sshd: no hostkeys available
+
+在SSH服务器启动时，如果出现sshd: no hostkeys available的错误，通常是由于证书文件的问题。需要执行下面的命令即可。
+
+```bash
+ssh-keygen -A
+```
+
 ### 二、工具安装
 
 #### 1）Linux 安装Docker
@@ -115,5 +123,52 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 # 安装完成都是要sudo 才能用，如果希望直接就可以用，需要执行：
 # sudo usermod -aG docker ${USER}
 # 注意：阿里云的ecs assistant User的这个环境变量是空的！记得echo一下
+```
+
+#### 2）Docker 网络代理
+
+> 公司或者学校难免会有内网环境需要连接，拉取镜像什么的。但是Docker的网络代理非常复制，分成好几个阶段的区别。
+
+- Docker Pull的代理：执行docker pull时，是由守护进程dockerd来执行。因此，代理需要配在dockerd的环境中。而这个环境，则是受systemd所管控，因此实际是systemd的配置。
+
+```bash
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo touch /etc/systemd/system/docker.service.d/proxy.conf
+
+# 然后在文件里面添加上下面内容，记得修改成你需要的网络代理，虚拟机内配置请修改为主机的IP
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:8080/"
+Environment="HTTPS_PROXY=http://proxy.example.com:8080/"
+Environment="NO_PROXY=localhost,127.0.0.1,.example.com"
+
+# 添加完成后，要让配置生效
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+- 在容器运行阶段，如果需要代理上网，则需要配置`~/.docker/config.json`。以下配置，只在Docker 17.07及以上版本生效。（当然你也可以手动在容器里面设置环境变量来代理）
+
+```json
+{
+ "proxies":
+ {
+   "default":
+   {
+     "httpProxy": "http://proxy.example.com:8080",
+     "httpsProxy": "http://proxy.example.com:8080",
+     "noProxy": "localhost,127.0.0.1,.example.com"
+   }
+ }
+}
+```
+
+- Docker Build 代理：
+
+```bash
+docker build . \
+    --build-arg "HTTP_PROXY=http://proxy.example.com:8080/" \
+    --build-arg "HTTPS_PROXY=http://proxy.example.com:8080/" \
+    --build-arg "NO_PROXY=localhost,127.0.0.1,.example.com" \
+    -t your/image:tag
 ```
 
