@@ -73,7 +73,7 @@ authorized_keys  id_rsa  id_rsa.pub
 - 第三步：把公钥内容`id_rsa.pub`添加到`authorized_keys`里面
 
 ```bash
-cat ./id_rsa >> ./authorized_keys
+cat ./id_rsa.pub >> ./authorized_keys
 ```
 
 - 第四步：打开vscode，然后进入ssh的配置文件，填写
