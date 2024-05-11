@@ -172,3 +172,71 @@ docker build . \
     -t your/image:tag
 ```
 
+#### 3）Docker 磁盘与清理
+
+如下所示：通过`docker system df`查看即可：
+
+```bash
+admin@iZj6cckkqhgd7jajtcsk2jZ:~$ docker system df
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          8         7         17.59GB   13.2GB (75%)
+Containers      7         7         4.38MB    0B (0%)
+Local Volumes   64        1         230.5MB   230.5MB (100%)
+Build Cache     0         0         0B        0B
+```
+
+清理Docker缓存容量：
+
+```bash
+docker system prune    # 浅度清理
+docker system prune -a # 深度清理
+```
+
+### 三、磁盘管理
+
+> 这部分主要是服务器磁盘空间、清理、扩容有关的内容。
+
+#### 1）查看磁盘空间
+
+```bash
+admin@localhost:~$ df -Th
+Filesystem     Type   Size  Used Avail Use% Mounted on
+tmpfs          tmpfs  373M  1.3M  372M   1% /run
+/dev/vda1      ext4    79G   39G   38G  51% /
+tmpfs          tmpfs  1.9G     0  1.9G   0% /dev/shm
+tmpfs          tmpfs  5.0M     0  5.0M   0% /run/lock
+tmpfs          tmpfs  373M     0  373M   0% /run/user/1000
+```
+
+一般如上所示，`/dev/vda1`代表的就是主文件系统，Size表示总大小，Used代表使用的大小。
+
+#### 2）扩容磁盘
+
+在阿里云或者通过VM ware虚拟机对硬件进行扩容后，还需要在系统中手动扩容生效，具体命令如下：
+
+首先，需要确认磁盘容量：
+
+```bash
+# 确认磁盘容量是否符合购买显示的内容
+fdisk -lu
+```
+
+然后，安装扩容工具并进行扩容分区：
+
+```bash
+apt-get update
+apt-get install -y cloud-guest-utils
+growpart /dev/vda 1
+resize2fs /dev/vda1
+```
+
+最后，还是运行命令`df -Th`查看是否扩容成功。
+
+#### 3）查看文件夹占用
+
+统计当前文件夹的目录占用：
+
+```bash
+du -sh .
+```
+
