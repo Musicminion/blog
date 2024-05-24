@@ -163,3 +163,9 @@ Mac用的：
 
 - [App Store (Mac) 下载链接](https://apps.apple.com/tt/app/pixelstester-test-monitors/id1613340764)
 
+### 5）浏览器 UserAgent(win/mac/linux)
+
+> User Agent中文叫做用户代理，是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎等。举个例子 Safari 在B站可以看8K，但是Edge不可以，所以可以通过改UserAgent。同时UserAgent也在开发中用到。
+
+- Edge 安装链接：[User-Agent Switcher and Manager - Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/useragent-switcher-and-m/cnjkedgepfdpdbnepgmajmmjdjkjnifa)
+
