@@ -1,0 +1,9 @@
+# docker pull ghcr.io/musicminion/blog:latest
+
+services:
+  blog:
+    image: ghcr.io/musicminion/blog:latest
+    container_name: nginx
+    ports:
+      - "50001:80"
+    restart: always
