@@ -6,6 +6,10 @@ banner_img: /assets/images/background/ayaka-pink.jpg
 
 ## 关于我
 
+研一狗(2024-2025)，SJTUer，研究生在 [SE-tcloud](https://tcloud.sjtu.edu.cn/) 实验室。
+
+---
+
 大四学生(2023-2024)，SJTUer，本科生物信息，研究生暂未定...
 
 - 爱好：Coding、游戏、音乐、有空可能会做视频、蹭课、折腾电脑
