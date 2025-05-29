@@ -8,6 +8,11 @@ banner_img: /assets/images/background/ayaka-pink.jpg
 
 研一狗(2024-2025)，SJTUer，研究生在 [SE-tcloud](https://tcloud.sjtu.edu.cn/) 实验室。
 
+- 爱好：现在是减肥和骑车！还有折腾服务器
+- 爱吃的：老乡鸡、袁记云饺
+- 不喜欢：油腻会变胖的食物
+
+
 ---
 
 大四学生(2023-2024)，SJTUer，本科生物信息，研究生暂未定...

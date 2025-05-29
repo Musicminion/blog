@@ -1,0 +1,14 @@
+# docker compose -f compose.dev.yml up
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "4000:4000"
+    command: /bin/sh -c "npm install && npm run server"

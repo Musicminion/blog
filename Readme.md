@@ -10,6 +10,15 @@
 ![](./metrics.svg)
 
 ## 启动方式
+有 `node-20` 环境下请使用：
 ```bash
 npm install && npm run server
 ```
+
+如果有docker环境，请使用：
+```bash
+docker compose -f compose.dev.yml up -d
+```
+
+
+
