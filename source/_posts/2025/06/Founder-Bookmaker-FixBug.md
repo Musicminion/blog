@@ -43,7 +43,7 @@ typora-root-url: ./Founder-Bookmaker-FixBug
 
 这明显就是版心出了漂移，但是我在小样预览的时候是正常的，那问题一定是在PDF导出的时候：
 
-![小样预览](./image-20250616095623-ui28ob5.png)
+![大样预览](./image-20250616095623-ui28ob5.png)
 
 ##### a）步骤一：进入导出PDF高级设置
 
