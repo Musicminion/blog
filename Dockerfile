@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install && npm run build
+RUN npm install -g && npm run build
 
 FROM nginx:1.19.4-alpine
 

@@ -3,6 +3,8 @@ title: 近期遇到的 Git 有关的问题
 tags: [Git, GitHub, GitLab, Git-Commit, Shallow-Update]
 date: 2025-06-26T16:03:11Z
 updated: 2025-07-01T23:33:11Z
+index_img: 2025/06/Some-Problem-About-Git-an-Gitlab/Git-Logo-2Color.png
+banner_img: 2025/06/Some-Problem-About-Git-an-Gitlab/Git-Logo-2Color.png
 author: Musicminion
 ---
 
