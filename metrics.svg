@@ -70,7 +70,7 @@
                                 <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4 8a4 4 0 118 0 4 4 0 01-8 0z"/>
                             </svg>
                             <div class="infos">
-                                <div class="title">Git 提交仓库遇到 Shallow update not allowed 修复</div>
+                                <div class="title">近期遇到的 Git 有关的问题</div>
                                 <div class="date">26 Jun 2025</div>
                             </div>
                         </div>
