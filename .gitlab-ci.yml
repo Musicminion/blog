@@ -9,15 +9,14 @@ docker-build:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - TIMESTAMP=$(date +"%Y%m%d%H%M")
-    - export DOCKER_IMAGE_NAME="$CI_REGISTRY_IMAGE:${TIMESTAMP}"
-    - echo "构建镜像: $DOCKER_IMAGE_NAME"
-    - docker build --pull -t "$DOCKER_IMAGE_NAME" .
-    - docker push "$DOCKER_IMAGE_NAME"
-    # 如果是默认分支则打上 latest
     - |
+      TIMESTAMP=$(date +"%Y%m%d%H%M")
+      DOCKER_IMAGE_NAME="$CI_REGISTRY_IMAGE:${TIMESTAMP}"
+      echo "构建镜像: ${DOCKER_IMAGE_NAME}"
+      docker build --pull -t "${DOCKER_IMAGE_NAME}" .
+      docker push "${DOCKER_IMAGE_NAME}"
       if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
-        docker tag "$DOCKER_IMAGE_NAME" "$CI_REGISTRY_IMAGE:latest"
+        docker tag "${DOCKER_IMAGE_NAME}" "$CI_REGISTRY_IMAGE:latest"
         docker push "$CI_REGISTRY_IMAGE:latest"
       fi
   rules:
