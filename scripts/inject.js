@@ -1,6 +1,9 @@
 // Author: Musicminion
 // Description: Adds a custom avatar,msvalidate to the top of the page
-hexo.extend.injector.register('head_begin', '<link rel="stylesheet" href="/css/my-avatar.css">', 'default');
+hexo.extend.injector.register('head_end', '<link rel="stylesheet" href="/css/my-avatar.css">', 'default');
+
+// Description: Adds banner transition effect
+hexo.extend.injector.register('head_begin', '<link rel="stylesheet" href="/css/my-banner.css">', 'default');
 
 // Add msvalidate
 hexo.extend.injector.register('head_begin', '<meta name="msvalidate.01" content="3A0A333C87F53DC35E793673A0667DFC" />', 'default');
@@ -24,3 +27,13 @@ hexo.extend.filter.register('theme_inject', function(injects) {
     <a href="javascript:goEdit()" style="font-size: .9rem;"> <i class="iconfont icon-pen"></i> 编辑链接 </a>
     </div>`);
 })
+
+// 在这里设置日间和夜间的图
+hexo.extend.injector.register('head_begin', () => {
+  const light_img = '/assets/images/background/ayaka-blue.jpg';
+  const dark_img = '/assets/images/background/ayaka-night.jpg'; 
+  return `<script>
+    window.BANNER_IMG_LIGHT = '${light_img}';
+    window.BANNER_IMG_DARK = '${dark_img}';
+  </script>`;
+}, 'default');
