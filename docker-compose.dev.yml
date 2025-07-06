@@ -1,4 +1,4 @@
-# docker compose -f compose.dev.yml up
+# docker compose -f docker-compose.dev.yml up
 version: '3'
 services:
   app:
