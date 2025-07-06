@@ -37,4 +37,4 @@ docker-deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       exists:
-        - compose.yml
+        - docker-compose.yml
