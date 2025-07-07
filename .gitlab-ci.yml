@@ -26,7 +26,7 @@ docker-build:
 
 # ---------- deploy 阶段 ----------
 docker-deploy:
-  image: docker/compose:latest
+  image: docker:cli
   stage: deploy
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
