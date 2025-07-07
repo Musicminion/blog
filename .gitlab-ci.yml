@@ -32,6 +32,7 @@ docker-deploy:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - echo "拉取并重启最新 latest 镜像"
+    - docker-compose down
     - docker-compose pull
     - docker-compose up -d
   rules:
