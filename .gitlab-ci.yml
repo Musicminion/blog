@@ -1,17 +1,67 @@
-# The Docker image that will be used to build your app
+# 顶层镜像（各 job 可单独覆盖）
 image: node:lts
-create-pages:
-  pages:
-    # The folder that contains the files to be exposed at the Page URL
-    publish: public
-  rules:
-    # This ensures that only pushes to the default branch will trigger
-    # a pages deploy
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-  # Functions that should be executed before the build script is run
+
+# 阶段定义
+stages:
+  - build
+  # - deploy
+  - pages
+
+# ---------- 构建镜像阶段 ----------
+docker-build:
+  image: docker:cli
+  stage: build
   before_script:
+    - export TZ=Asia/Shanghai
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
     - |
+      echo "当前时间：$(date '+%Y-%m-%d %H:%M:%S')"
+      TIMESTAMP=$(date +"%Y%m%d%H%M")
+      DOCKER_IMAGE_NAME="$CI_REGISTRY_IMAGE:${TIMESTAMP}"
+      echo "构建镜像: ${DOCKER_IMAGE_NAME}"
+      docker build --pull -t "${DOCKER_IMAGE_NAME}" .
+      docker push "${DOCKER_IMAGE_NAME}"
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        docker tag "${DOCKER_IMAGE_NAME}" "$CI_REGISTRY_IMAGE:latest"
+        docker push "$CI_REGISTRY_IMAGE:latest"
+      fi
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - Dockerfile
+
+# # ---------- 容器部署阶段 ----------
+# docker-deploy:
+#   image: docker/compose:latest
+#   stage: deploy
+#   before_script:
+#     - export TZ=Asia/Shanghai
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script:
+#     - echo "当前时间：$(date '+%Y-%m-%d %H:%M:%S')"
+#     - echo "拉取并重启最新 latest 镜像"
+#     - docker compose pull
+#     - docker compose up -d
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#       exists:
+#         - compose.yml
+
+# ---------- GitLab Pages 部署阶段 ----------
+create-pages:
+  stage: pages
+  image: node:lts
+  before_script:
+    |
+      export TZ=Asia/Shanghai
       sed -i "s|^url:.*|url: https://pages.ayaka.space/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}|" _config.yml
       npm install
   script:
+    - echo "当前时间：$(date '+%Y-%m-%d %H:%M:%S')"
     - npm run build
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
