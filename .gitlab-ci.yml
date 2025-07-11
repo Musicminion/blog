@@ -12,11 +12,10 @@ docker-build:
   image: docker:cli
   stage: build
   before_script:
-    - export TZ=Asia/Shanghai
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - |
-      echo "当前时间：$(date '+%Y-%m-%d %H:%M:%S')"
+      echo "当前时间：$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S')"
       TIMESTAMP=$(date +"%Y%m%d%H%M")
       DOCKER_IMAGE_NAME="$CI_REGISTRY_IMAGE:${TIMESTAMP}"
       echo "构建镜像: ${DOCKER_IMAGE_NAME}"
