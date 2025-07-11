@@ -13,23 +13,6 @@ author: Musicminion
 > 排版：[Musicminion](https://github.com/musicminion) © [ayaka-notes](https://github.com/ayaka-notes)
 
 
-### 高考语文
-
-
-<iframe src="https://alist-org.github.io/pdf.js/web/viewer.html?file=https://icloud.ayaka.space/d/local/public/gaokao-2024/2024_%E9%AB%98%E8%80%83%E8%AF%AD%E6%96%87.pdf" width="100%", height="500px"></iframe>
-
-
-### 高考数学
-
-<iframe src="https://alist-org.github.io/pdf.js/web/viewer.html?file=https://icloud.ayaka.space/d/local/public/gaokao-2024/2024_%E9%AB%98%E8%80%83%E6%95%B0%E5%AD%A6.pdf" width="100%", height="500px"></iframe>
-
-
-### 高考英语
-
-<iframe src="https://alist-org.github.io/pdf.js/web/viewer.html?file=https://icloud.ayaka.space/d/local/public/gaokao-2024/2024_%E9%AB%98%E8%80%83%E8%8B%B1%E8%AF%AD.pdf" width="100%", height="500px"></iframe>
-
-
-
 ### 项目内容
 
 本项目包含 2024 年新课标Ⅰ卷的高考试卷的 $\LaTeX$ 排版（源代码）。具体包括：
