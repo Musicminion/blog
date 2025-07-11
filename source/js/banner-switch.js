@@ -11,8 +11,8 @@
     // 只在背景图为 /assets/images/background/ayaka-blue.xxx 时才执行切换
     if (!/\/assets\/images\/background\/ayaka-blue\./.test(bg)) return;
   // 读取配置的图片路径（默认成为default.png, 建议不设置切图的话把大屏图命名为default）
-  var bannerImgLight = window.BANNER_IMG_LIGHT || '/img/default.png';
-  var bannerImgDark = window.BANNER_IMG_DARK || '/img/default.png';
+  var bannerImgLight = window.BANNER_IMG_LIGHT || './img/default.png';
+  var bannerImgDark = window.BANNER_IMG_DARK || './img/default.png';
 
   function setBanner() {
     var banner = document.getElementById('banner');
