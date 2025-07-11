@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  blog:
+    image: registry.ayaka.space/musicminion/blog
+    container_name: blog_nginx
+    ports:
+      - "50001:80"
+    restart: always

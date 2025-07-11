@@ -13,7 +13,7 @@ timezone: ""
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://blog.ayaka.space
+url: https://blog.ayaka.space
 
 # 之前的永久链接是会把年份、月份、日期都加上的，但是我已经按照年份、月份、日期分好了文件夹
 # 所以这里就不需要了，直接把永久链接设置为标题就可以了
