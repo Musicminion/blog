@@ -51,6 +51,7 @@ docker-build:
 create-pages:
   stage: pages
   image: node:lts
+  pages: true
   before_script:
     |
       export TZ=Asia/Shanghai
