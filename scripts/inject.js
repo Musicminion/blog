@@ -23,7 +23,7 @@ hexo.extend.filter.register('theme_inject', function(injects) {
     // injects.postMetaBottom.raw('editurl-link', '<a href="javascript:goEdit()"> 编辑链接</a>');
 
     injects.postMetaBottom.raw('editurl-link', `<div class="post-meta">
-    <script async src="/js/goEdit.js" crossorigin="anonymous"></script>
+    <script async src="../../../js/goEdit.js" crossorigin="anonymous"></script>
     <a href="javascript:goEdit()" style="font-size: .9rem;"> <i class="iconfont icon-pen"></i> 编辑链接 </a>
     </div>`);
 })

@@ -35,7 +35,7 @@ function goEdit(){
     let editBaseUrl = "https://github.dev/Musicminion/blog/blob/main/source/_posts_src/"
 
     // 打开编辑页面
-    window.open(editBaseUrl + path + ".md")
+    window.open(editBaseUrl + path)
 }
 
 // 加上快捷键 当按下.的时候，就会调用getEditURL
