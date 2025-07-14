@@ -36,3 +36,21 @@
   var observer = new MutationObserver(setBanner);
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-user-color-scheme'] });
 })();
+
+
+// 等待 DOM 加载完毕
+document.addEventListener("DOMContentLoaded", function () {
+  const subtitle = document.querySelector("#subtitle");
+  if (!subtitle) return;
+  // 创建 avatar 元素
+  const avatar = document.createElement("img");
+  avatar.src = "/assets/images/avatar/avatar.png";
+  avatar.className = "my-avatar";
+
+  // 创建换行元素
+  const br = document.createElement("br");
+
+  // 插入到 subtitle 前
+  subtitle.parentNode.insertBefore(avatar, subtitle);
+  subtitle.parentNode.insertBefore(br, subtitle);
+});
