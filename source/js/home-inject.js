@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!subtitle) return;
   // 创建 avatar 元素
   const avatar = document.createElement("img");
-  avatar.src = "/assets/images/avatar/avatar.png";
+  avatar.src = "./assets/images/avatar/avatar.png";
   avatar.className = "my-avatar";
 
   // 创建换行元素
