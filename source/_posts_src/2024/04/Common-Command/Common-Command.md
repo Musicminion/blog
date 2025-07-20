@@ -2,7 +2,7 @@
 title: 常用命令汇总
 tags: [Linux, 运维, Common]
 date: 2024-04-05 13:25:00
-updated: 2024-04-05 13:25:00
+updated: 2025-07-20 19:42:00
 index_img: 2024/04/Common-Command/ubuntu.png
 banner_img: 2024/04/Common-Command/ubuntu.png
 author: Musicminion
@@ -85,6 +85,10 @@ User 你的用户名
 IdentityFile D:/key/id_rsa(改成你的密钥位置，windows还需要自行修改权限)
 PasswordAuthentication no
 ```
+
+这里友情提示一下，可以直接把`id_rsa`文件的内容复制到当前用户的`~/.ssh`文件中，这样直接使用`ssh 你的服务器IP`就可以登录了。
+
+```bash
 
 #### 4）sshd: no hostkeys available
 
@@ -240,3 +244,15 @@ resize2fs /dev/vda1
 du -sh .
 ```
 
+### 四、文件压缩
+
+压缩当前文件夹的所有内容：
+```bash
+sudo tar --use-compress-program="pigz -p $(shell echo $$(($(shell nproc) * 2)))" --numeric-owner -cvpf ../backup-$(date +%Y%m%d).tar.gz .
+```
+
+解压指定压缩包的内容到当前目录：
+
+```bash
+sudo tar --use-compress-program="pigz -p $(shell echo $$(($(shellnproc) * 2)))" --numeric-owner -xvpf backup-XXXXXXXX.tar.gz
+```
