@@ -1,6 +1,6 @@
 ---
 title: Hexo 的图片资源的重新优化
-tags: [Git, GitHub, GitLab, Git-Commit, Shallow-Update]
+tags: [Hexo, Script, Image, Asset]
 date: 2025-07-11T15:18:38Z
 updated: 2025-07-27T23:35:42Z
 index_img: 2025/07/ReOptimization-of-Hexo-Image-Resources/image-20250727232830-o9gg7c7.png
