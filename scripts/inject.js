@@ -28,6 +28,9 @@ hexo.extend.filter.register('theme_inject', function(injects) {
     </div>`);
 })
 
+// Add home script for ./js/home-inject.js
+hexo.extend.injector.register('head_begin', '<script src="./js/home-inject.js"></script>', 'home');
+
 // 在这里设置日间和夜间的图
 hexo.extend.injector.register('head_begin', () => {
   const light_img = './assets/images/background/ayaka-blue.jpg';
