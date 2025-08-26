@@ -219,7 +219,7 @@ sudo gitlab-ctl start # 重启 gitlab
 
 Gitlab 的官方文档其实也是支持 [Proxying assets | GitLab Docs，](https://docs.gitlab.com/security/asset_proxy/)只不过可能很少有朋友关注到了这一点。部署好后的效果如下，可以看到所有的图片全都经过了我的个人 Camo 服务，成功加载：
 
-![image](./image-20250825142845-lccnelf.png)
+![Camo 效果演示](./image-20250825142845-lccnelf.png "Camo 效果演示")
 
 ### 二、部署具体功能
 
@@ -281,7 +281,7 @@ server {
 
 然后需要自己去你的 Gitlab 的个人设置里面，生成一个 PRIVATE-TOKEN 个人访问令牌，权限你可以暂时全部选上，或者勾选 sudo 也行。
 
-![image](./image-20250825144953-r0q1h0j.png)
+![Gitlab 个人访问令牌设置界面](./image-20250825144953-r0q1h0j.png "Gitlab 个人访问令牌设置界面")
 
 然后使用命令行，记得把`<my_private_token>`替换为你的个人访问令牌：
 
@@ -295,7 +295,7 @@ asset_proxy_secret_key=somekey" \
 
 之后重启 GitLab，你应该就可以看到图片是不是走的你的代理服务器加载的了。
 
-![image](./image-20250825145135-222nvsd.png)
+![Camo 服务启用后的效果](./image-20250825145135-222nvsd.png "Camo 服务启用后的效果")
 
 顺便提一嘴，其实这里还可以个性化的配置缓存过期的时间，具体可以参考 Nginx 的缓存时间配置。
 
@@ -372,7 +372,7 @@ services:
 - 然后注意URL必须配置为从 Gitlab 容器里面可以访问到的搜索的 URL，为了安全起见可以考虑配置一下密码之类的，我这里仅仅是内部访问，就直接忽略了。
 - 配置完成后点`索引实例`，然后静候佳音
 
-![image](./image-20250825150647-r14ph1j.png)​
+![高级搜索设置面板](./image-20250825150647-r14ph1j.png "高级搜索设置面板")
 
 另外据说还有一个中文的分词器可以考虑一下，方法是进入 Elasticsearch容器里面执行：
 
@@ -467,7 +467,7 @@ Gitlab 的 Zoekt 容器的版本和 Gitlab 基本算配套发布的。
 
 这些工作做完之后，你就可以启动 zoekt，先看容器是否是正常启动的。然后你先可以进入 Web 界面开启：
 
-![image](./image-20250825152911-oufi1pj.png)
+![精确代码搜索设置面板](./image-20250825152911-oufi1pj.png "精确代码搜索设置面板")
 
 在默认情况 Gitlab 18.2.4 之前，他默认只会给新的Group或者用户开启这个搜索，不会开启之前旧的名字空间的索引作业的，需要手动指定。比如`<top-level-group-to-index>`改成你的`root`，就可以索引当前root用户下面的项目。
 
