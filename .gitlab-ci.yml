@@ -13,7 +13,7 @@ docker-build:
   stage: build
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - apt-get update && apt-get install -y tzdata
+    - apk update && apk add tzdata
   script:
     - |
       echo "当前时间：$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S')"
@@ -56,7 +56,7 @@ create-pages:
   before_script:
     |
       export TZ=Asia/Shanghai
-      apt-get update && apt-get install -y tzdata
+      apk update && apk add tzdata
       sed -i "s|^url:.*|url: https://pages.ayaka.space/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}|" _config.yml
       npm install
   script:
