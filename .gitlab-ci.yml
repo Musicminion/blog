@@ -16,7 +16,7 @@ docker-build:
   script:
     - |
       echo "当前时间：$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S')"
-      TIMESTAMP=$(date +"%Y%m%d%H%M")
+      TIMESTAMP=$(TZ=Asia/Shanghai date +"%Y%m%d%H%M")
       DOCKER_IMAGE_NAME="$CI_REGISTRY_IMAGE:${TIMESTAMP}"
       echo "构建镜像: ${DOCKER_IMAGE_NAME}"
       docker build --pull -t "${DOCKER_IMAGE_NAME}" .
@@ -58,7 +58,7 @@ create-pages:
       sed -i "s|^url:.*|url: https://pages.ayaka.space/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}|" _config.yml
       npm install
   script:
-    - echo "当前时间：$(date '+%Y-%m-%d %H:%M:%S')"
+    - echo "当前时间：$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S')"
     - npm run build
   artifacts:
     paths:
