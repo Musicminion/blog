@@ -40,7 +40,7 @@ Gitlab 支持[不同类型的 Gitlab 搜索](https://docs.gitlab.com/user/search
 
 - 社区 CE 版搜索：只支持最基本的搜索：项目名字等
 - Gitlab 高级搜索：可以搜索具体代码、评论、Issue 内容、里程碑
-- Zoekt 精确代码：高级搜索的代码不一定准确，Zoekt 可以更精准的搜索到代码（beat 版）
+- Zoekt 精确代码：高级搜索的代码不一定准确，Zoekt 可以更精准的搜索到代码（beta 版）
 
 因为我平时个人搜索代码还是很频繁的，你要说为什么不本地 vscode 里面直接搜，那肯定是最快的嘛，但是有时候开发很可能就是想起来了，在浏览器里面顺手一搜索的事，能简化肯定是希望更简化的。
 
@@ -100,7 +100,7 @@ Gitlab 支持[不同类型的 Gitlab 搜索](https://docs.gitlab.com/user/search
             <td>No</td>
             <td>No</td>
             <td>Yes</td>
-            <td><span data-type="strong">Comits</span></td>
+            <td><span data-type="strong">Commits</span></td>
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
@@ -194,7 +194,7 @@ Gitlab 支持[不同类型的 Gitlab 搜索](https://docs.gitlab.com/user/search
 
 #### 3）容器镜像库 Metadata
 
-如果你已经运营了一段时间的 Gitlab 的容器镜像库，就会发现**你的 Gitlab 数据越来越大**，经过排查我发现是 Gitlab 的容器镜像库默认情况不会自动做垃圾回收（GC）。（即使你通过 Web 界面删除了一个 Docker Image，容器镜像依然存储在你的 Gitlab 中）
+如果你已经运营了一段时间的 Gitlab 的容器镜像库，就会发现**你的 Gitlab 数据越来越大**，经过排查我发现是 Gitlab 的容器镜像库默认情况不会自动进行垃圾回收（GC）。（即使你通过 Web 界面删除了一个 Docker Image，容器镜像依然存储在你的 Gitlab 中）
 
 有关垃圾回收的教程，请参考 [Running the garbage collection on schedule | GitLab Docs](https://docs.gitlab.com/administration/packages/container_registry/#running-the-garbage-collection-on-schedule)，具体就是运行下面这个命令：
 
