@@ -10,6 +10,10 @@ author: Musicminion
 
 ## 连接 Gitlab 和 Elasticsearch/Zoekt 并使用 Docker Metadata 数据库、Camo 代理服务
 
+> 本文章首发于：[连接 Gitlab 和 Elasticsearch/Zoekt 并使用 Docker Metadata 数据库、Camo 代理服务 - Ayaka 的小站](https://blog.ayaka.space/2025/08/Connect-Gitlab-with-Elasticsearch-Zoekt-and-Use-Docker-Registry-Metadata-database-and-Use-Camo/)
+>
+> 为确保更好阅读格式和阅读体验，更建议前往[个人博客](https://blog.ayaka.space/2025/08/Connect-Gitlab-with-Elasticsearch-Zoekt-and-Use-Docker-Registry-Metadata-database-and-Use-Camo/)阅读 ~，另外本文章部分内部 Issue 链接为个人 Gitlab，不保证链接可用性。
+
 ### 一、简介
 
 #### 1）前提
@@ -41,6 +45,7 @@ Gitlab 支持[不同类型的 Gitlab 搜索](https://docs.gitlab.com/user/search
 因为我平时个人搜索代码还是很频繁的，你要说为什么不本地 vscode 里面直接搜，那肯定是最快的嘛，但是有时候开发很可能就是想起来了，在浏览器里面顺手一搜索的事，能简化肯定是希望更简化的。
 
 这是不同搜索支持的功能，看完之后是不是很心动：
+
 
 <table contenteditable="false" spellcheck="false">
     <thead>
@@ -183,7 +188,7 @@ Gitlab 支持[不同类型的 Gitlab 搜索](https://docs.gitlab.com/user/search
 
 ![GitLab 精确搜索](./image-20250825135847-tfouc6u.png "GitLab 精确搜索")
 
-高级搜索：可以搜索 Wiki、Commit记录等，会提示：[高级搜索](https://git.ayaka.space/help/user/search/advanced_search.md) 已启用
+高级搜索：可以搜索 Wiki、Commit 记录等，会提示：[高级搜索](https://git.ayaka.space/help/user/search/advanced_search.md) 已启用
 
 ![GitLab 高级搜索](./image-20250825135951-9vz47vo.png "GitLab 高级搜索")
 
@@ -203,17 +208,17 @@ sudo gitlab-ctl start # 重启 gitlab
 
 > You can run garbage collection in the background without the need to schedule it or require read-only mode, if you migrate to the [metadata database](https://docs.gitlab.com/administration/packages/container_registry_metadata_database/).
 
-开启了metadata database 后，就可以愉快的统计容器镜像库
+开启了 metadata database 后，就可以愉快的统计容器镜像库
 
 ![镜像容量统计](./image-20250825141746-syjqiso.png "镜像容量统计")
 
 #### 4）Camo 代理服务
 
-不知道有没有小伙伴仔细看过 Github 里面引用的一些外链图片的链接。如果你检查过就会发现，所有 Github Readme 引用的外部图片链接，全部变成了`https://camo.githubusercontent.com/`​
+不知道有没有小伙伴仔细看过 Github 里面引用的一些外链图片的链接。如果你检查过就会发现，所有 Github Readme 引用的外部图片链接，全部变成了 `https://camo.githubusercontent.com/`​
 
 > 官方解释：为托管图像，GitHub 使用[开源项目 Camo](https://github.com/atmos/camo)。 Camo 为每个文件生成匿名 URL 代理，以隐藏您的浏览器详细信息和来自其他用户的相关信息。 URL 以 `https://<subdomain>.githubusercontent.com/` 开头，子域不同，具体取决于图像的上传方式。
 
-这样的好处就是，假如有人为了恶意统计用户的访问IP，然后引用于一个自己服务器的图片，这样每次用户打开这个 Readme 的时候，浏览器就会顺着这个图片的URL，去抓取对应的图片，这样就可能导致隐私泄露的问题。
+这样的好处就是，假如有人为了恶意统计用户的访问 IP，然后引用于一个自己服务器的图片，这样每次用户打开这个 Readme 的时候，浏览器就会顺着这个图片的 URL，去抓取对应的图片，这样就可能导致隐私泄露的问题。
 
 此外，因为国内的一些网络环境不好，一些引用的外网的图片，也可能全部变成了诡异的加载失败，如果能搭建一个自己的图片代理，就会好很多力！
 
@@ -223,15 +228,17 @@ Gitlab 的官方文档其实也是支持 [Proxying assets | GitLab Docs，](http
 
 ### 二、部署具体功能
 
-废话不多说，首先介绍一下我自己是使用 Docker-Compose 的 `yml`文件来部署的 Gitlab，我喜欢所有的配置文件集中管理，这样可以很好的迁移。关于 Docker 部署 Gitlab 教程已经烂大街我这里就不需要额外介绍了。
+废话不多说，首先介绍一下我自己是使用 Docker-Compose 的 `yml` ​文件来部署的 Gitlab，我喜欢所有的配置文件集中管理，这样可以很好的迁移。关于 Docker 部署 Gitlab 教程已经烂大街我这里就不需要额外介绍了。
 
 我们三个功能由易到难依次介绍：
 
 #### 1）Camo 代理服务
 
+> 内部 Issue 链接：[2025.08 Week 2: 给自建 Gitlab 增加 Camo 服务图片代理 (#5) · Issue · Musicminion/personal-plan](https://git.ayaka.space/Musicminion/personal-plan/-/issues/5)
+
 Github 上有一个开源项目 [cactus/go-camo: A secure image proxy server](https://github.com/cactus/go-camo)，采用 Go 语言编写，同时具有轻量还有高效的特点，并且还提供了 Docker 的部署方式。
 
-我这里是在一台自己的海外服务器上运行的，这是`docker-compose.yml`：
+我这里是在一台自己的海外服务器上运行的，这是 `docker-compose.yml`：
 
 ```yml
 services:
@@ -243,7 +250,7 @@ services:
     command: ["-k", "somekey"]
 ```
 
-注意，你应该生成一个自己的密钥，然后用来代替上面的 `somekey`，这个key后面会用来签名使用。然后就是 Nginx 的配置这个也是老生常谈了的：
+注意，你应该生成一个自己的密钥，然后用来代替上面的 `somekey`，这个 key 后面会用来签名使用。然后就是 Nginx 的配置这个也是老生常谈了的：
 
 ```conf
 server {
@@ -283,7 +290,7 @@ server {
 
 ![Gitlab 个人访问令牌设置界面](./image-20250825144953-r0q1h0j.png "Gitlab 个人访问令牌设置界面")
 
-然后使用命令行，记得把`<my_private_token>`替换为你的个人访问令牌：
+然后使用命令行，记得把 `<my_private_token>` ​替换为你的个人访问令牌：
 
 ```bash
 curl --request "PUT" "https://gitlab.example.com/api/v4/application/settings?\
@@ -303,7 +310,7 @@ asset_proxy_secret_key=somekey" \
 
 ElasticSearch 是一个 Java 写的全文搜索工具，说实话非常吃性能，没有 16G 的大内存基本很难跑。而且这个东西的 Docker 部署小有复杂。
 
-首先给你的 Gitlab 的 Docker compose的文件里面加上以下内容：
+首先给你的 Gitlab 的 Docker compose 的文件里面加上以下内容：
 
 ```yml
   elasticsearch:
@@ -369,24 +376,26 @@ services:
 然后就是进入管理页面配置了：
 
 - 勾选开启 ElasticSearch 索引
-- 然后注意URL必须配置为从 Gitlab 容器里面可以访问到的搜索的 URL，为了安全起见可以考虑配置一下密码之类的，我这里仅仅是内部访问，就直接忽略了。
-- 配置完成后点`索引实例`，然后静候佳音
+- 然后注意 URL 必须配置为从 Gitlab 容器里面可以访问到的搜索的 URL，为了安全起见可以考虑配置一下密码之类的，我这里仅仅是内部访问，就直接忽略了。
+- 配置完成后点 `索引实例`，然后静候佳音
 
 ![高级搜索设置面板](./image-20250825150647-r14ph1j.png "高级搜索设置面板")
 
-另外据说还有一个中文的分词器可以考虑一下，方法是进入 Elasticsearch容器里面执行：
+另外据说还有一个中文的分词器可以考虑一下，方法是进入 Elasticsearch 容器里面执行：
 
 ```yml
 sudo bin/elasticsearch-plugin install analysis-smartcn
 ```
 
-至于Elasticsearch不停机重建索引，这个一般适用于更新了Gitlab之后，发现搜索搜不了了，或者出现故障的时候，需要重建索引，就点一下，不要点的太频繁。
+至于 Elasticsearch 不停机重建索引，这个一般适用于更新了 Gitlab 之后，发现搜索搜不了了，或者出现故障的时候，需要重建索引，就点一下，不要点的太频繁。
 
 等所有的项目索引完成，就可以快乐的搜索了！注意，一般**开始索引实例之后，上图里面暂停 ElasticSearch 索引的选项会自动打开，如果你发现索引好了，可以取消勾选然后保存。**
 
 #### 3）Zoekt 精确代码搜索
 
-先简要介绍一下 Zoekt 的架构，Gitlab 和 Zoekt 是怎么配合的？Zoekt 会运行一个 indexer，负责构建索引。Zoekt indexer 启动之后，会去找 Gitlab 一直拉取自己的作业需求，比如知道我现在要索引`/root`下面的所有仓库，然后他就会通过 Gitaly 的 socket 接口去拉取这个对应的数据。这就会导致两个问题：
+> 内部 Issue 链接：[2025.08 Week 3: 给个人 Gitlab 新增代码精确搜索功能 (#8) · Issue · Musicminion/personal-plan](https://git.ayaka.space/Musicminion/personal-plan/-/issues/8)
+
+先简要介绍一下 Zoekt 的架构，Gitlab 和 Zoekt 是怎么配合的？Zoekt 会运行一个 indexer，负责构建索引。Zoekt indexer 启动之后，会去找 Gitlab 一直拉取自己的作业需求，比如知道我现在要索引 `/root` ​下面的所有仓库，然后他就会通过 Gitaly 的 socket 接口去拉取这个对应的数据。这就会导致两个问题：
 
 - Zoekt indexer 需要和 Gitlab 共享数据目录（socket 通信目录等）
 - 需要解决权限问题，UID/GID 需要手动配置
@@ -400,9 +409,9 @@ Gitlab 的 Zoekt 容器的版本和 Gitlab 基本算配套发布的。
 配置文件里面的几个问题：
 
 1. 你需要找到 gitaly 目录，然后 `ls -ln` 看一下权限，一般 docker 部署的权限号码应该是 998
-2. `gitlab_shell_secret`这个文件可能需要你手动去找一下gitlab的这个文件的位置，`find /`一下理论有，我这里也记不清楚，但是你最好拷贝一份放给 zoekt 专门用
-3. `git.example.com`就是你的 Gitlab 的 URL
-4. 最重要的一个事情：Gitlab 主容器里面的`/var/opt/gitlab`这个挂载到宿主机出后，你需要把挂出来的这个目录，重新挂载到 zoekt 里面去！这样才能保证里面可以通过 socket 文件访问 gitaly，因为需要拉取仓库数据。
+2. `gitlab_shell_secret` ​这个文件可能需要你手动去找一下 gitlab 的这个文件的位置，`find /` ​一下理论有，我这里也记不清楚，但是你最好拷贝一份放给 zoekt 专门用
+3. `git.example.com` ​就是你的 Gitlab 的 URL
+4. 最重要的一个事情：Gitlab 主容器里面的 `/var/opt/gitlab` ​这个挂载到宿主机出后，你需要把挂出来的这个目录，重新挂载到 zoekt 里面去！这样才能保证里面可以通过 socket 文件访问 gitaly，因为需要拉取仓库数据。
 
 ```yml
    gitlab:
@@ -469,7 +478,7 @@ Gitlab 的 Zoekt 容器的版本和 Gitlab 基本算配套发布的。
 
 ![精确代码搜索设置面板](./image-20250825152911-oufi1pj.png "精确代码搜索设置面板")
 
-在默认情况 Gitlab 18.2.4 之前，他默认只会给新的Group或者用户开启这个搜索，不会开启之前旧的名字空间的索引作业的，需要手动指定。比如`<top-level-group-to-index>`改成你的`root`，就可以索引当前root用户下面的项目。
+在默认情况 Gitlab 18.2.4 之前，他默认只会给新的 Group 或者用户开启这个搜索，不会开启之前旧的名字空间的索引作业的，需要手动指定。比如 `<top-level-group-to-index>` ​改成你的 `root`，就可以索引当前 root 用户下面的项目。
 
 参考链接：[Zoekt chart | GitLab Docs](https://docs.gitlab.com/charts/charts/gitlab/gitlab-zoekt/?tab=GitLab+17.7+and+later#configure-zoekt-in-gitlab)
 
@@ -484,3 +493,132 @@ node.indices.create!(zoekt_enabled_namespace_id: enabled_namespace.id, namespace
 ```
 
 处理好后你应该可以看到索引已经重新建立，然后可以在 Web 界面愉快的搜索了。
+
+#### 4）Docker Registery Metadata
+
+##### a）迁移教程
+
+> 内部 Issue 链接：[2025.08 Week 3: 给个人 Gitlab Registry 迁移到新的 metadata DB (#9) · Issue · Musicminion/personal-plan](https://git.ayaka.space/Musicminion/personal-plan/-/issues/9)
+
+首先，Gitlab 18.3 其实默认会运行一个迁移脚本，把容器镜像仓库迁移到新的 Meadata 数据库中，所以最推荐的做法是直接升级到 18.3。
+
+对于旧版本的 Gitlab，如果不想升级，并且又需要开启容器镜像仓库的元数据数据库，需要参考论坛的链接：[论坛教程链接](https://forum.gitlab.com/t/container-registry-metadata-database-migration-on-docker-installation/111263/5)
+
+首先需要创建数据库专用用户（**友情提示：建议看完 b 部分我写的迁移导致的问题在运行脚本**）：
+
+```shell
+gitlab-psql -c "CREATE USER registry WITH PASSWORD 'registrypassword'"
+gitlab-psql -c "CREATE DATABASE registry_database WITH OWNER registry"
+```
+
+需要指定数据库的位置、允许外部用户链接：
+
+```plaintext
+registry['database'] = {
+  'enabled' => false, # Must be false!
+  'host' => '/var/opt/gitlab/postgresql/',
+  'user' => 'registry',
+  'password' => 'registrypassword',
+  'dbname' => 'registry_database',
+  'sslmode' => 'disable'
+}
+
+postgresql['custom_pg_hba_entries'] = {
+  registry_db: [
+    {
+      type: 'local',
+      database: 'registry_database',
+      user: 'registry',
+      method: 'md5'
+  }
+  ]
+}
+```
+
+然后配置好之后，参考教程：[Gitlab Docs | 开启容器镜像仓库元数据数据库](https://docs.gitlab.com/administration/packages/container_registry_metadata_database/#one-step-import)。
+
+```plaintext
+# 注意这里 storage 的配置，因为我用的本地存储，所以要指定目录：
+registry['storage'] = {
+  'filesystem' => {'rootdirectory' => '/var/opt/gitlab/gitlab-rails/shared/registry'} 
+  'maintenance' => {
+    'readonly' => {
+      'enabled' => true # Must be set to true.
+    }
+  }
+}
+```
+
+然后运行迁移脚本：
+
+```shell
+sudo -u registry gitlab-ctl registry-database migrate up
+sudo -u registry gitlab-ctl registry-database import --log-to-stdout
+```
+
+因为在 Docker 里面 sudo 是不可用的，直接可以删掉 `sudo -u registry` 这一部分的，如果不是 Docker 部署，直接在物理机器运行就可以。
+
+迁移完成后，原来的用 false 就可以关闭了，此外 `'maintenance'` 那一栏目也需要删掉，这样用户可以读写了。
+
+```plaintext
+registry['database'] = {
+  'enabled' => true,
+  'host' => '/var/opt/gitlab/postgresql/',
+  'user' => 'registry',
+  'password' => 'registrypassword',
+  'dbname' => 'registry_database',
+  'sslmode' => 'disable'
+}
+```
+
+迁移完成后，容器镜像仓库是可以自动做垃圾回收 GC 的了，理论来说磁盘空间可以节省不少。
+
+发现容器的数据统计不对，需要参考 Gitlab 的教程：[Gitlab Issue | 容器镜像仓库 size 为 0 的原因修复](https://gitlab.com/gitlab-org/gitlab/-/issues/536170)，意思就是这个容器镜像占用的空间是静态更新的，或者通过 notifer，配置 notifer 教程在这 [配置 Notifer 的官方文档](https://docs.gitlab.com/administration/packages/container_registry/?tab=Linux+package+%28Omnibus%29#configure-container-registry-notifications)。所以需要再 Gitlab 的配置文件里面添加：
+
+```plaintext
+registry['notifications'] = [
+  {
+    'name' => '<test_endpoint>',
+    'url' => 'https://<gitlab.example.com>/api/v4/container_registry_event/events',
+    'timeout' => '500ms',
+    'threshold' => 5, # DEPRECATED: use `maxretries` instead.
+    'maxretries' => 5,
+    'backoff' => '1s',
+    'headers' => {
+      "Authorization" => ["<AUTHORIZATION_EXAMPLE_TOKEN>"]
+    }
+  }
+]
+
+gitlab_rails['registry_notification_secret'] = '<AUTHORIZATION_EXAMPLE_TOKEN>' # Must match the auth token in registry['notifications']
+```
+
+这个 notifer 本质是一个 webhook，当用户推送 docker 镜像之后，就会触发一个作业 worker 的请求，重新统计当前仓库的 Docker 镜像大小。
+
+其中 `<AUTHORIZATION_EXAMPLE_TOKEN>` 需要随机生成的 32 位字符，生成命令如下：
+
+```bash
+< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c 32 | sed "s/^[0-9]*//"; echo
+```
+
+配置好之后，当你推送镜像，就会触发这个重新计算的操作，并不是立刻显示数据，**时延大概是 5 min。** 效果如下所示，可以看到你用的用量占用了多少 size 了。
+
+![使用量配额效果图](./image-20250828173302-0pkvp4u.png "使用量配额效果图")
+
+##### b）迁移导致的问题
+
+补充：如果你已经做了迁移，在更新到 18.3 的时候，注意一个小问题。就是 18.3 的迁移脚本会默认创建一个新的用户。更新之后我发现自己 gitlab 容器镜像数据 30 多 G 全丢，然后排查了很久。
+
+其实按照我前面的迁移教程我已经做了一次了，但是 18.3 启动脚本里面又做了一次迁移。按照我之前的配置，迁移脚本告诉我数据库密码不对。所以启动失败。我首先直接偷懒，把之前配置的数据库用户名密码的部分全都删了，然后发现迁移脚本启动成功了就没管。晚上发现数据都不在了（
+
+然后一看数据库里面有两个 registry 的数据库（一个叫`registry`，一个叫`registry_database`），显然`registry_database `是新创的，但是巧妙的是，新创的默认 db 的用户名是和我之前做迁移的时候用户完全一样的，所以**推测启动迁移脚本可能创建了一个用户，然后正好把这个密码给改掉了，导致迁移脚本告诉我数据库密码不对。所以启动失败。** 所以我就把用户名密码都删除了。
+
+Gitlab 的数据库的示意图如下：
+
+![GitLab 数据库列表](./network-asset-image-20250828174203-j820okf.png "GitLab 数据库列表")​
+
+然后创了另外一个用户`registry_user`，把数据库的 Owner 修改到新的用户`registry_user`，然后修改 Gitlab 里面的配置文件，所有的数据终于回来了。
+
+> 内部 Issue 链接：[2025.08 Week 3: 修复 Gitlab 更新到 18.3 之后容器镜像仓库 Metadata 的问题 (#13) · Issue · Musicminion/personal-plan](https://git.ayaka.space/Musicminion/personal-plan/-/issues/13)
+
+‍
