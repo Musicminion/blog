@@ -94,7 +94,7 @@ Gitlab 支持[不同类型的 Gitlab 搜索](https://docs.gitlab.com/user/search
             <td>Yes</td>
             <td>Yes</td>
             <td><span data-type="strong">Comments</span></td>
-            <td colspan="3" rowspan="9">No</td>    </tr>
+            <td colspan="3" rowspan="9" style="text-align: center; vertical-align: middle;">No</td>    </tr>
         <tr>
             <td><span data-type="strong">Commits</span></td>
             <td>No</td>
