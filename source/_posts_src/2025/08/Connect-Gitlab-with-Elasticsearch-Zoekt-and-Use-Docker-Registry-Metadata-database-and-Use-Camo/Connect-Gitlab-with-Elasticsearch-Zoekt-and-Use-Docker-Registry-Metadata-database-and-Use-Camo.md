@@ -616,7 +616,6 @@ gitlab_rails['registry_notification_secret'] = '<AUTHORIZATION_EXAMPLE_TOKEN>' #
 Gitlab 的数据库的示意图如下：
 
 ![GitLab 数据库列表](./network-asset-image-20250828174203-j820okf.png "GitLab 数据库列表")​
-
 然后创了另外一个用户`registry_user`，把数据库的 Owner 修改到新的用户`registry_user`，然后修改 Gitlab 里面的配置文件，所有的数据终于回来了。
 
 > 内部 Issue 链接：[2025.08 Week 3: 修复 Gitlab 更新到 18.3 之后容器镜像仓库 Metadata 的问题 (#13) · Issue · Musicminion/personal-plan](https://git.ayaka.space/Musicminion/personal-plan/-/issues/13)
