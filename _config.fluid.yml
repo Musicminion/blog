@@ -639,7 +639,7 @@ post:
 
     # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开
     # Collapse depth. If 0, all headings collapsed. If greater than 0, it will be expanded by default if there are sub headings
-    collapseDepth: 0
+    collapseDepth: 6
 
   # 版权声明，会显示在每篇文章的结尾
   # Copyright, will be displayed at the end of each post
