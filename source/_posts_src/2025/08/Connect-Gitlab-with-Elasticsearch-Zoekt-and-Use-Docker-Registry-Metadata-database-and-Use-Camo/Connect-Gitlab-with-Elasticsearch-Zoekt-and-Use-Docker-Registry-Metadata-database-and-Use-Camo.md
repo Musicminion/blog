@@ -1,5 +1,5 @@
 ---
-title: 连接 Gitlab 和 Elasticsearch/Zoekt 并使用 Docker Metadata 数据库、Camo 代理服务
+title: 配置 Gitlab 和 Elasticsearch/Zoekt 并使用 Docker Metadata 数据库、Camo 代理服务
 tags: [Gitlab, Docker, Elasticsearch, Zoekt, Camo, Registry]
 date: 2025-08-25T15:57:00Z
 updated: 2025-08-25T15:57:00Z
@@ -8,7 +8,7 @@ banner_img: 2025/08/Connect-Gitlab-with-Elasticsearch-Zoekt-and-Use-Docker-Regis
 author: Musicminion
 ---
 
-## 连接 Gitlab 和 Elasticsearch/Zoekt 并使用 Docker Metadata 数据库、Camo 代理服务
+## 配置 Gitlab 和 Elasticsearch/Zoekt 并使用 Docker Metadata 数据库、Camo 代理服务
 
 > 本文章首发于：[连接 Gitlab 和 Elasticsearch/Zoekt 并使用 Docker Metadata 数据库、Camo 代理服务 - Ayaka 的小站](https://blog.ayaka.space/2025/08/Connect-Gitlab-with-Elasticsearch-Zoekt-and-Use-Docker-Registry-Metadata-database-and-Use-Camo/)
 >
