@@ -33,7 +33,7 @@ author: Musicminion
 
 因此抱着这样的好奇心我在 8 月 31 号的中午就下单了：
 
-![京东 DS925+，售价为 4999](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903002248-wj1vs96.png "京东 DS925+，售价为 4999")​
+![京东 DS925+，售价为 4999](./image-20250903002248-wj1vs96.png "京东 DS925+，售价为 4999")​
 
 #### 2）买前了解的信息
 
@@ -66,7 +66,7 @@ author: Musicminion
 
 然后我花了很大力气，小心翼翼的吧所有的胶带全部都撕掉了。然后还原成这个样子，注意一下：这个其实是有密封的包装，这个密封标签在箱子的开口处。
 
-![开箱的机器](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903002923-rawbvl0.png "开箱的机器")​
+![开箱的机器](./image-20250903002923-rawbvl0.png "开箱的机器")​
 
 说实话我感觉京东自营的快递很一般，尤其是包装这一块。就感觉是直接拿着货物到处飞，反正也不担心退货咯，退货估摸也有包装二次打包一下再去卖的。
 
@@ -74,11 +74,11 @@ author: Musicminion
 
 买来小心翼翼的把包装撕掉，然后换上了我笔记本 **64GB** 的内存（2x32G，DDR4）：
 
-![DS 925 + 32 GB 内存 x 2](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\20250903115654-20250903115707-b891gk4_compressed-20250903121222-sdbho3k.jpg "DS 925 + 32 GB 内存 x 2")​
+![DS 925 + 32 GB 内存 x 2](./20250903115654-20250903115707-b891gk4_compressed-20250903121222-sdbho3k.jpg "DS 925 + 32 GB 内存 x 2")​
 
 然后关于硬盘 我采用了一块三星的 512GB 的 870 EVO。因为我不是很确定自己是否需要这个 Nas，而且为了避免拆封硬盘给商家带来的额外麻烦，我就干脆自己准备。
 
-![image-20250903114252-nrzoqaw_compressed](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903114252-nrzoqaw_compressed-20250903121424-zfo73po.png "SATA 固态 三星 870 ")​
+![image-20250903114252-nrzoqaw_compressed](./image-20250903114252-nrzoqaw_compressed-20250903121424-zfo73po.png "SATA 固态 三星 870 ")​
 
 另外其实我在 B 站做功课的时候就发现，有人已经买了 DS925 这种机器，然后用 sata 固态盘就可以**绕过安装时候的硬盘检查限制**。因此不如试一试。​​
 
@@ -96,19 +96,19 @@ author: Musicminion
 
 进入系统可以完美，不会有硬盘的兼容性：
 
-![开始安装前的提示](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903114421-d0es9ra.png "开始安装前的提示")​
+![开始安装前的提示](./image-20250903114421-d0es9ra.png "开始安装前的提示")​
 
 安装进行中：
 
-![安装进行中](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903114433-d2pvp21.png "安装进行中")​
+![安装进行中](./image-20250903114433-d2pvp21.png "安装进行中")​
 
 安装完成，会疯狂提示你的存储池没有验证，很蛋疼：
 
-![存储池的警告](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903114911-0x0ijh8.png "存储池的警告")​
+![存储池的警告](./image-20250903114911-0x0ijh8.png "存储池的警告")​
 
 另外补充一下，群晖的 64 GB 内存也是可以完美兼容的：
 
-![完美兼容 64 GB 内存](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903114918-z9oif2a.png "完美兼容 64 GB 内存")​
+![完美兼容 64 GB 内存](./image-20250903114918-z9oif2a.png "完美兼容 64 GB 内存")​
 
 #### 4）说说虚拟机 CPU 性能
 
@@ -122,11 +122,11 @@ author: Musicminion
 
 此时的机器资源占用如下：
 
-![机器的资源占用情况](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903114956-wkuujwb.png "机器的资源占用情况")​
+![机器的资源占用情况](./image-20250903114956-wkuujwb.png "机器的资源占用情况")​
 
 安装好虚拟机大概这样，勉强算能比较流畅的运行：
 
-![虚拟机的 noVNC](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903115005-6h0nxsy.png "虚拟机的 noVNC")​
+![虚拟机的 noVNC](./image-20250903115005-6h0nxsy.png "虚拟机的 noVNC")​
 
 **小结**：群晖这个虚拟机并不适合有图形界面的，比如 Ubuntu 的虚拟机，因为虽然是 4 核 8 线程，但是 CPU 降频了，所以就会导致稍微重一点的任务（甚至 ubuntu 安装）这种都有些费力，鼠标移动稍微有一些卡顿，勉勉强强。
 
@@ -136,7 +136,7 @@ author: Musicminion
 
 虚拟机的日常的资源占用，其实我觉得还不错：
 
-![虚拟机的资源占用情况](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903115019-tptxglf.png "虚拟机的资源占用情况")​
+![虚拟机的资源占用情况](./image-20250903115019-tptxglf.png "虚拟机的资源占用情况")​
 
 **介绍一下我自己的 Gitlab：**
 
@@ -164,7 +164,7 @@ author: Musicminion
 
 打开一看，目前硬盘里面也就存储了我们实验室各类毕业人士的毕业论文还有代码，偶尔还有几台服务器上面的备份数据。对于平时团队的协作开发，服务器，足矣。线下的数据传递，一个 U 盘或者移动硬盘，足矣。那为什么要一个 Nas 呢？备份，备份，也只有备份了。时间一长，自然沦落到角落里面，加上没有专门的人维护管理，吃灰是自然的。
 
-![实验室吃灰的群晖 DS418 play](C:\Users\ayaka\Downloads\Rethink-about-NAS-with-Synology-DS925+.md (1)\2025.09\image-20250903115330-cc8cnjr_compressed-20250903121132-8677ti1.png "实验室吃灰的群晖 DS418 play")​
+![实验室吃灰的群晖 DS418 play](./image-20250903115330-cc8cnjr_compressed-20250903121132-8677ti1.png "实验室吃灰的群晖 DS418 play")​
 
 这些年啊，也不知道是从何时开始，“私有云”这个词越来越火。仿佛随着网盘收费、内容监管和审查越来越严，一夜之间那些卖私有云的厂家就开始疯狂鼓吹 Nas 的好处。但是其实仔细一想，不少人买网盘会员，其实说到底并没有多少自己的重要数据要存储，反倒是为了下载所谓的小道破解资源，而被迫购买下载的会员。这样就算买回来 Nas，也依然治标不治本。
 
