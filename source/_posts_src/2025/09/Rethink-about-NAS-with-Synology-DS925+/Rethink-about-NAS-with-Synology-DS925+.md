@@ -1,6 +1,6 @@
 ---
 title: 从群晖 DS 925+ 重新思考 NAS
-tags: [Synology, Nas, DS925+, Gitlab]
+tags: [Synology, Nas, DS925+, Gitlab, V1500B, CPU]
 date: 2025-09-03T12:16:46Z
 updated: 2025-09-03T12:16:46Z
 index_img: 2025/09/Rethink-about-NAS-with-Synology-DS925+/image-20250903114421-d0es9ra.png
