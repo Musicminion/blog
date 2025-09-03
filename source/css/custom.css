@@ -1,0 +1,14 @@
+/* Custom CSS for blog */
+iframe[src^="//player.bilibili.com/"], iframe[src^="https://player.bilibili.com/"], iframe[src^="http://player.bilibili.com/"] {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+}
+
+.markdown-body figure>a>img,.markdown-body figure>img,.markdown-body p>a>img,.markdown-body p>img {
+    max-width: 75% !important;
+}
+
+.markdown-body figcaption.image-caption {
+    margin: -.75rem auto 1rem;
+}

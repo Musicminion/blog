@@ -90,7 +90,7 @@ author: Musicminion
 
 其实这么一想又觉得 4999 自己买了一个寂寞，这么一个铁盒子 + 主板怎么都不值得这个价吧？有兴趣的可以去看看拆解视频：[https://www.bilibili.com/video/BV1Md4y147xG](https://www.bilibili.com/video/BV1Md4y147xG)
 
-<iframe src="https://player.bilibili.com/player.html?isOutside=true&amp;aid=390756221&amp;bvid=BV1Md4y147xG&amp;cid=911796731&amp;p=1" data-src="//player.bilibili.com/player.html?isOutside=true&amp;aid=390756221&amp;bvid=BV1Md4y147xG&amp;cid=911796731&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 777px; height: 410px;"></iframe>
+<iframe src="https://player.bilibili.com/player.html?isOutside=true&amp;aid=390756221&amp;bvid=BV1Md4y147xG&amp;cid=911796731&amp;p=1&amp;autoplay=0" data-src="//player.bilibili.com/player.html?isOutside=true&amp;aid=390756221&amp;bvid=BV1Md4y147xG&amp;cid=911796731&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 777px; height: 410px;"></iframe>
 
 #### 3）安装系统
 
