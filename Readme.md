@@ -30,3 +30,18 @@ npm run build
 ```bash
 docker compose -f docker-compose.yml up -d
 ```
+
+## Contributing | 贡献
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+欢迎贡献！详情请查看[贡献指南](CONTRIBUTING.md)。
+
+### Reporting Issues | 报告问题
+
+When creating an issue, please use one of our issue templates:
+- 🐛 [Bug Report](.github/ISSUE_TEMPLATE/bug_report.md) - Report bugs or issues
+- ✨ [Feature Request](.github/ISSUE_TEMPLATE/feature_request.md) - Suggest new features
+- ❓ [Question](.github/ISSUE_TEMPLATE/question.md) - Ask questions or start discussions
+
+创建问题时，请使用我们的问题模板之一。
