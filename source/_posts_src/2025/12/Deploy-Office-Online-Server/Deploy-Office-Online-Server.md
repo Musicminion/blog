@@ -8,13 +8,15 @@ banner_img: 2025/12/Deploy-Office-Online-Server/image-20251212150833-b6qjeqk.png
 author: Musicminion
 ---
 
-## 2026 虚拟机最新版 2026 Office Online Server 部署教程
+## 2026 Office Online Server 最新版终极部署教程
+
+> 版权声明：本教程为原创文章！教程内的所有图片为实机录制，未经许可严禁转载全文或者文章部分内容。
 
 ### 一、背景 + 效果展示
 
 #### 1）背景介绍
 
-说实话，我馋微软的 Office Online Server 很久了，为什么？因为我们交大也在用：[Webview SJTU](https://webview.sjtu.edu.cn/op/generate.aspx "Webview")，但是这个网站之前是可以预览外部 URL 的文件的，不知道可能后来被滥用的多了，就增加了额外的限制，只允许预览交大内部 canvas 文件 Office。他的界面就长这样，很简单，也很微软.这也是我很喜欢微软的原因，相比较国内各种流氓弹窗软件，微软的网页做的真的非常人性化，尽管他还是一个 2016 年甚至更早的的软件，但是依然非常优雅放在今天：
+说实话，我馋微软的 Office Online Server 很久了，为什么？因为我们交大也在用：[Webview SJTU](https://webview.sjtu.edu.cn/op/generate.aspx "Webview")，但是这个网站之前是可以预览外部 URL 的文件的，不知道可能后来被滥用的多了，就增加了额外的限制，只允许预览交大内部 canvas 文件 Office。他的界面就长这样，很简单，也很微软。这也是我很喜欢微软还有国外一些软件的原因，相比较国内各种流氓弹窗软件、开屏广告，微软的网页做的真的非常人性化，尽管他还是一个 2016 年甚至更早的的软件，但是依然非常优雅放在今天：
 
 ![image](./image-20251212115859-9y241p8.png)
 
@@ -34,9 +36,9 @@ author: Musicminion
 
 **问题一：这个东西是否需要 License？网传编辑是需要额外 License 吗？**
 
-回答：从安装部署的角度，**完全不需要**，但是企业要是部署合不合规请自己参考微软的官方说明。我只能说这个东西**只要有安装包就可以安装**，并且所有的功能都可以解锁，不需要任何密钥、不需要任何导入 License 过程，但是是否合规请根据自己的企业情况。本教程不对违规部署造成的损失或者赔偿负任何责任。
+回答：从安装部署的角度，**完全不需要**，但是企业要是部署合不合规请自己参考微软的官方说明。我只能说这个东西**只要有安装包就可以全流程安装**，并且全功能解锁，不需要任何密钥、不需要任何导入 License 过程，但是是否合规请根据自己的企业情况。本教程不对违规部署造成的损失或者赔偿负任何责任。
 
-网上之前有人说这个软件的编辑是需要 License 的，实际上只是在你开启编辑功能的时候，会在命令行里面问你是否有 License，如果你输入 Y，微软就默认相信你。
+网上之前有人说这个软件的编辑是需要 License 的，实际上只是在你开启编辑功能的时候，会在命令行里面问你是否有 License，如果你输入 Y，微软就默认相信你有 License 了。
 
 **问题二：从哪里获取到 Office Online Server 的官方安装文件？**
 
@@ -58,15 +60,43 @@ author: Musicminion
 
 **问题三：有没有快捷部署的 Docker 方法？**
 
-回答：没有。必须安装在 Windows Server 上面。
+回答：没有。必须安装在 Windows Server 上面。而且需要是带域控的 Windows Server，所以没有简单一键部署的 Docker，网上咸鱼部署的价格从 200~1600 不等。
 
 **问题四：怎么开启编辑功能？**
 
 回答：自建 wopi 或者使用开源网盘 Nextcloud 对接 Office online server 集成即可。其实我更推荐用后者，因为更稳定，有专门的开源社区维护。
 
-#### 3）效果展示
+**问题五：有没有正版购入 Office Online Server 的渠道？**
 
-演示预览数学 Office 文档的效果：
+回答：参考这个链接：[Office Online Server License Requirements - Microsoft Q&A](https://learn.microsoft.com/en-us/answers/questions/5143051/office-online-server-license-requirements)
+
+我也提交过工单，咨询国内的 Office online server，微软把我的工单移交给了微软批量授权中心，但是他们的回复比较勉强，你需要 Office 2016 标准版或者 Office 2016 Pro Plus（专业增强版），然后建议我联系本地的微软经销商。大概我的推测就是：这个东西并不提供给个人，需要企业购买批量的许可证，至于是 Office 2016 还是 Office 2019 甚至是最新版的 2024 呢？其实具体是和经销商谈的或者沟通，经销商可以在购买的合同里面商榷到底包不包含 Office online server，其余的话并没有合法的获取途径。
+
+另外这个软件马上也要寿终正寝了，微软宣布 2026 年 12 月停止支持 Office online server。以下是我和国内经销商的沟通截图：
+
+![result](./result-20251214225130-lk55dy3.png)
+
+**问题六：最新版本是什么？我有强迫症必须安装最新版！**
+
+回答：2018 November，目前仍然可以受到微软的维护。以下是所有的版本：
+
+|**内部版本**|**可用性日期**|**支持结束日期**|
+| ----------------| -------------------| :-----------------: |
+|16.0.6814.2226|2016 年 5 月 4 日|2016 年 11 月 18 日|
+|16.0.7601.6800|2016 年 11 月 18 日|2017 年 4 月 18 日|
+|16.0.7766.8550|2017 年 4 月 18 日|2017 年 11 月 8 日|
+|16.0.8471.8525|2017 年 11 月 8 日|2018 年 11 月 30 日|
+|16.0.10338.20039|2018 年 11 月 30 日|待定|
+
+‍
+
+#### 3）功能介绍和效果展示
+
+Office Online Server 是一个可以私有部署的云服务器组件，可以用来在浏览器中预览和编辑微软的 Office 文档。因为出自微软，所以在格式和兼容性上有着其他第三方预览服务不可媲美的优势，这也是国内很多学校和企业选择 Office Online Server 的原因。
+
+其实，微软官方提供了一个 API 服务：`https://view.officeapps.live.com/op/view.aspx?src=`​，你只需要在 `src` 后面填写你需要预览的文件的互联网 URL 就可以，前提是这个文件必须是公网可以访问，而不是你私有的局域网的某个链接文件。
+
+以下是演示预览数学 Office 文档的效果：
 
 ![image](./image-20251212150833-b6qjeqk.png)
 
@@ -82,7 +112,7 @@ author: Musicminion
 
 ![image](./image-20251212151119-vtgjp5f.png)
 
-‍
+虽然不能说做到和桌面端完全一样的效果或者预览精确度，但是从体验上来说可以说几乎完爆现有的解决方案了。
 
 ### 二、部署教程
 
@@ -138,12 +168,14 @@ Office Online server 只能部署在 Windows Server 上，按照微软官方的�
 用同样的方法配置两次，基本配置是一样的操作就可以了，配置好如下图所示，然后开机，我们需要两台虚拟机：
 
 - 一台虚拟机 Master，作为域控
+- 一台虚拟机 Webview，作为 OOS 运行的服务器
+- 后面我们的文章就用 Master 和 Webview 作为这两个的称呼了
 
 ![image](./image-20251211234200-pcfnlc7.png)
 
 然后我们就可以在 VNC 里面看到启动后的 Windows Server 安装了。
 
-![截屏 2025-12-11 23.44.23](./截屏2025-12-11%2023.44.23-20251211234428-9oirak3.png)
+![截屏 2025-12-11 23.44.23](./截屏2025-12-11 23.44.23-20251211234428-9oirak3.png)
 
 #### 3）安装 Windows Server 2022
 
@@ -486,7 +518,7 @@ New-OfficeWebAppsFarm -InternalURL "http://webview.ayaka-internal.space" -AllowH
 
 执行效果如下，他会提示你的是否允许编辑，实测并不会要你输入微软密钥或者 License：
 
-![截屏 2025-12-12 01.12.56](./截屏2025-12-12%2001.12.56-20251212011258-uv1te27.png)
+![截屏 2025-12-12 01.12.56](./截屏2025-12-12 01.12.56-20251212011258-uv1te27.png)
 
 然后接下来，我们要允许从互联网的 URL 读文件，需要执行下面命令：
 
@@ -496,17 +528,17 @@ Set-OfficeWebAppsFarm -OpenFromUrlEnabled
 
 然后我们在浏览器里面输入刚刚的域名，就可以看到部署已经成功完成！
 
-![截屏 2025-12-12 01.15.34](./截屏2025-12-12%2001.15.34-20251212011536-gbq45yo.png)
+![截屏 2025-12-12 01.15.34](./截屏2025-12-12 01.15.34-20251212011536-gbq45yo.png)
 
 到这里已经结束了基本，最后我们还需要去安装 Office Online Server 的语言包，下载地址：[https://www.microsoft.com/zh-cn/download/details.aspx?id=51963](https://www.microsoft.com/zh-cn/download/details.aspx?id=51963)
 
 安装过程和前面的基本一样，我这里就省略了：
 
-![截屏 2025-12-12 01.17.38](./截屏2025-12-12%2001.17.38-20251212011741-tieecp1.png)
+![截屏 2025-12-12 01.17.38](./截屏2025-12-12 01.17.38-20251212011741-tieecp1.png)
 
-### 三、调教教程
+### 三、问题调教教程
 
-#### 1）测试预览
+#### 1）测试 Web URL 预览
 
 虽然安装到前面就结束了，其实还有很多问题。首先是设置一下外网访问地址，以便 FRPC 内网穿透
 
@@ -515,15 +547,37 @@ Set-OfficeWebAppsFarm -OpenFromUrlEnabled
 
 ```
 
-然后我建议你在**自己的阿里云 OSS 里面，新建一个 S3 存储**，然后上传一个 Office 文档文件，看看能不能预览，理论是可以的。大家不要直接在互联网随便搜索一个 URL 里面带有 docx 的文件，很有可能打不开，因为 Office Online Server 默认不支持 TLS 1.2 和 1.3 以上的版本！
+然后我建议你在**自己的阿里云 OSS 里面，新建一个 S3 存储**，然后上传一个 Office 文档文件，看看能不能预览，理论是可以的。大家**不要直接在互联网随便搜索一个 URL 里面带有 docx 的文件，很有可能打不开**，<u>因为 Office Online Server 默认不支持 TLS 1.2 和 1.3 以上的版本</u>！
 
-![截屏 2025-12-12 01.27.40](./截屏2025-12-12%2001.27.40-20251212012747-116x6zb.png)
+具体方法可以打开阿里云的 [OSS 管理控制台](https://oss.console.aliyun.com/overview)，创建一个存储桶，然后上传一个自己的文件：
 
-#### 2）开启 TLS 1.2 支持
+![image](./image-20251214221725-y6rqeby.png)
+
+注意这里不要开启 TLS 版本设置，或者开启，但是需要勾选允许 TLS 1.0 的版本：
+
+![image](./image-20251214221844-02c309o.png)
+
+然后记得检查是否开启了阻止公共访问，需要允许公共访问：
+
+![image](./image-20251214222006-1nfheuw.png)
+
+然后把你上传的文件的 URL 复制到 Office online server，然后点击预览：
+
+![截屏 2025-12-12 01.27.40](./截屏2025-12-12 01.27.40-20251212012747-116x6zb.png)
+
+另外还有一种方法，通过共享 windows 的文件夹，然后预览，就是输入类似 `\\server1\web\test.docs` ​的方法，这种方法叫做 UNC 路径，具体参考微软官方的文档：[使用 Microsoft Office Online 或 Office Online Server 查看器测试查看 Office 文档 - Microsoft 365 Apps | Microsoft Learn](https://learn.microsoft.com/zh-cn/troubleshoot/microsoft-365-apps/administration/test-viewing-documents-by-using-office-online-server-viewer)
+
+在驱动器 C 的根目录中创建名为“Test”的文件夹（C:\\Test\\Test1.xlsx）。 如果此位置位于另一台服务器上而不是 WAC 服务器上，则需要与 WAC 服务器（ **计算机** 帐户）共享此文件夹，如下所示（微软本身图就是这么模糊，清朝画质）：
+
+![image](./image-20251214222349-146fsl0.png)
+
+然后在 generate.aspx 页中输入工作簿的 UNC 位置（\\\\\<Servername\>\\test\\test1.xlsx）。 在以下示例中，UNC 位置为“\\\\wacserver\\test\\test1.xlsx”。
+
+#### 2）开启 TLS 1.2 支持（特别重要）
 
 前面我让大家用阿里云 OSS，就是因为 OSS 这个好像可以支持 TLS 1.0，但是现在网上很多资源都是 TLS 1.2 以上。所以很麻烦。
 
-还是在强调一遍，有些朋友可能接下来会在互联网上面，或者自己的云盘上面找一个直链，然后喂给这个 Office Online Server，但是突然发现没法预览，这个原因是没有开启 TLS 1.2，具体操作：[在 Office Online Server 中启用 TLS 1.1 和 TLS 1.2 支持 - Office Online Server | Microsoft Learn](https://learn.microsoft.com/zh-cn/officeonlineserver/enable-tls-1-1-and-tls-1-2-support-in-office-online-server)
+还是在强调一遍，有些朋友可能接下来会在互联网上面，或者自己的云盘上面找一个直链，然后喂给这个 Office Online Server，但是突然发现没法预览，这个原因是**没有开启 TLS 1.2**，具体操作：[在 Office Online Server 中启用 TLS 1.1 和 TLS 1.2 支持 - Office Online Server | Microsoft Learn](https://learn.microsoft.com/zh-cn/officeonlineserver/enable-tls-1-1-and-tls-1-2-support-in-office-online-server)
 
 将 TLS 1.1 和 TLS 1.2 及更高版本与 Office Online Server 配合使用需要在 .NET Framework 4.5 或更高版本中使用强加密。 若要在 .NET Framework 4.5 或更高版本中启用安全系数高的加密技术，请添加以下注册表项：
 
@@ -563,7 +617,7 @@ Windows Registry Editor Version 5.00
 Set-OfficeWebAppsFarm -PicturePasteDisabled:$false
 ```
 
-#### 4）内网穿透功能
+#### 4）FRP 内网穿透功能
 
 去 Github 下载 [Releases · fatedier/frp](https://github.com/fatedier/frp/releases) 的客户端。然后按照网上的教程配置好远程服务器的 FRPS 和 FRPC。这里我有点不是很想再把这个功能炒旧菜炒一遍。
 
@@ -585,6 +639,10 @@ local_port = 80
 remote_port = 8888     ; 填一个远程服务器没有用到的端口
 ```
 
+然后我们启动 `frpc`​，注意 `frpc.ini` 的配置文件应该放在同级目录：
+
+![image](./image-20251215000411-8pglt1j.png)
+
 然后我们要修改配置，内网穿透必备选项，把 SSL offlod 打开，卸载到 Nginx 或者负载均衡：
 
 ```powershell
@@ -599,7 +657,7 @@ Set-OfficeWebAppsFarm -InternalURL https://<你的外网访问域名>
 
 然后在你的 Windows 上面启动 FRPC 客户端。之后我们回到 FRPS 服务器，我们配置 Nginx：
 
-```conf
+```nginx
 server {
     listen 443 ssl;
     server_name <你的外网访问域名>;
@@ -704,10 +762,119 @@ volumes:
 
 ![image](./image-20251212164453-sat99h9.png)
 
-安装好之后，在这里输入你的 Office Online 的地址，最好是带 https 的：
+安装好之后，在这里输入你的 Office Online 的地址，最好是带 `https` 的：
 
 ![image](./image-20251212164418-wnkar21.png)
 
 然后你就可以在预览里面看到你的 Office 文件了，随便上传打开一个文件：
 
 ![image](./image-20251212164652-jfmflrb.png)
+
+#### 7）手机移动端视图诡异
+
+微软的这个 Office online server 端的移动视图做的很不友好，虽然可能很早之前希望有一个这样的移动阅读器，但是真实体验在手机上阅读就是灾难级别的。所以作为一个 workaround，需要我们屏蔽掉这种手机视图。大家可以根据自己的需要，毕竟用一个体验诡异的预览试图，还不如改成电脑端的正常视图。
+
+![截屏 2025-12-14 22.07.42](./截屏2025-12-14 22.07.42-20251214220749-t6syp36.png)
+
+解决方案需要修改反向代理的 Nginx，在我现有的 Nginx 配置中 `location /` 里，直接加这一行即可：
+
+```nginx
+proxy_set_header User-Agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+```
+
+最终效果：
+
+```nginx
+location / {
+    proxy_connect_timeout 300;
+    proxy_send_timeout 300;
+    proxy_read_timeout 300;
+
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $http_host;
+    proxy_set_header X-Forwarded-Port $server_port;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    # 🚨 一行强制桌面浏览器
+    proxy_set_header User-Agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
+    proxy_buffering off;
+    proxy_pass http://webview.ayaka.space:45080;
+}
+```
+
+然后执行：
+
+```bash
+sudo service nginx restart
+```
+
+然后在手机上打开一个预览效果，就可以看到明显发生了变化！现在和电脑端完全保持一致了。
+
+#### 8）限制允许拉取文件的主机
+
+具体参考 [New-OfficeWebAppsHost (officewebapps) | Microsoft Learn](https://learn.microsoft.com/zh-cn/powershell/module/officewebapps/new-officewebappshost?view=officewebapps-ps)。有些朋友可以想限制 OOS 只能从特定的文件服务器拉取然后预览，避免被公网乱七八糟的别家占用，或者浪费自己硬盘空间，所以解决方法是：
+
+```powershell
+New-OfficeWebAppsHost -domain "file.contoso.com"
+```
+
+默认情况你可以通过：
+
+```powershell
+Get-OfficeWebAppsHost
+```
+
+查看，如果发现返回列表是空，那说明允许预览任何主机上面的文件：
+
+![image](./image-20251214235455-hstqrwr.png)
+
+#### 9）添加字体
+
+把电脑上的文件字体拷贝到服务器上，然后需要选中字体、右键为所有用户安装！不能直接拖动到 Windows 的 fonts 文件夹，否则可能不会生效。注意 OOS 需要使用的是 openType 的字体，也就是 otf，所以需要自行搜索转换方法。
+
+具体可以参考：[将自定义字体与 Office Online Server (OOS) 配合使用 - Microsoft 365 Apps | Microsoft Learn](https://learn.microsoft.com/zh-cn/office/troubleshoot/administration/use-custom-fonts-with-office-online-server)。注意：当你添加了自定义字体后，在网盘里面创建一个新文档并不会直接显示有可以用的自定义字体，需要手动设置字体名字和你自定义字体一样，才能显示。
+
+![image](./image-20251215104025-1ca9x47.png)
+
+但是，如果你上传一个文档，里面就自带这种自定义字体，就可以在最近使用的字体里面看到，但是在所有字体里面并没有。如果你要用自定义字体，就必须手动输入这个字体的名字，这个就是他最大的限制。
+
+![image](./image-20251215130314-6273w0t.png)
+
+#### 10）预览文档大小限制
+
+OOS（office online server）默认对于打开文档大小有要求，默认不能打开 `>10M` 的文档。解决方案如下：
+
+- `C://Program Files/Microsoft Office Web Apps/OperFromUrlHost/`
+- `C://Program Files/Microsoft Office Web Apps/OperFromUrlWeb/`
+
+将上述两个文件夹中的 `Settings_Service.ini` 文件进行修改，在其中填入并保存下面代码，512000 单位是 KB，大家根据实际修改吧。
+
+```powershell
+OpenFromUrlMaxFileSizeInKBytes=(System.Int32)512000
+```
+
+### 四、说说我的感想
+
+Office Online Server 说实话真的部署起来很复杂。我在 2024 年秋季的时候折腾过一次，但是因为打不开外网的 URL 就从此放弃了，后来直到今年我重启了这样一个计划，才成功找到了跨越一年的问题，原来在于 TLS 1.2 没有开启。
+
+顺便提一嘴，我发现中文互联网是一个很神奇的东西，大部分人都还是很依赖中文互联网解决问题，或者很相信网上的教程。就好比我，真的看到那么多教程说必须要用 Windows Server 2012，我就傻乎乎的跟着教程走，实际上 Windows Server 2012 老掉牙的 IE 浏览器使用实在过于困难，最新版的 2022 实测也可以部署。所以各位折腾爱好者，还是要多相信官方文档啊！社区教程很多时候都只是一个辅助。
+
+尽管折腾复杂，只要你愿意折腾 + 大胆尝试，OOS 还是可以成功得到比较好的体验的。特别是集成网盘之后，你会发现自己得到了一个数据可控、私有性好、兼容性强大的在线浏览器 Office 软件。当然肯定也有人会说，为什么不用 Onedrive 自带的 Office 编辑，可能微软还在维护，兼容性更好，界面也更美观，但是其实我还是想说，数据只有存在自己的硬盘里面，才是最安心的。当然，具体选择什么还是取决于各位看官自己。
+
+前文也已经提到过，Office Online Server 在 2026 年 12 月也将停止维护了，毕竟现在各家都在把服务上云，上云往往意味着更高的订阅费用，但是更优质的体验，像 OOS 这种 On-Primise 买断制的可部署服务，在未来可能越来越少了吧。
+
+最后的最后，非常感谢：
+
+- 能够分享各种资源的 MSDN
+- 能够分享 Office Online Server 的 [Internet Archive: Digital Library of Free & Borrowable Texts, Movies, Music & Wayback Machine](https://archive.org/details/@vals0_518)
+- 还有中文互联网上各位分享 Office Online Server 的各位朋友们，他们的名单包括但不限于：
+
+  - [blog.51cto.com/u_15899048/6651668](https://blog.51cto.com/u_15899048/6651668)：PS.哥们这壁纸挺骚的
+  - [SharePoint 上 部署 Office Online Server - 知乎](https://zhuanlan.zhihu.com/p/577742174)
+  - [部署 Office Online Server - Office Online Server | Microsoft Learn](https://learn.microsoft.com/zh-cn/officeonlineserver/deploy-office-online-server)
+  - [Office Online Server 2016(OOS)部署教程](https://mp.weixin.qq.com/s/_xae5geDQl1LN8eiM7YxYA?poc_token=HJGaP2mjiu6mipWOvI6vdDv5KEP8D-ZBOUa2eCxG)：来自复网问答
+
+‍
