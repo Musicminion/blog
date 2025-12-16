@@ -3,8 +3,8 @@ title: 2026 虚拟机部署 Office Online Server 部署教程
 tags: [Office Online Server, OOS, Windows Server, 虚拟机, VMM, 群晖]
 date: 2025-12-11T23:29:38Z
 updated: 2025-12-12T16:46:51Z
-index_img: 2025/12/Deploy-Office-Online-Server/image-20251212150833-b6qjeqk.png
-banner_img: 2025/12/Deploy-Office-Online-Server/image-20251212150833-b6qjeqk.png
+index_img: 2025/12/Deploy-Office-Online-Server/image-20251212150833-b6qjeqk-1765850426235-103.png
+banner_img: 2025/12/Deploy-Office-Online-Server/image-20251212150833-b6qjeqk-1765850426235-103.png
 author: Musicminion
 ---
 
