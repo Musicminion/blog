@@ -219,7 +219,7 @@ Office Online server 只能部署在 Windows Server 上，按照微软官方的�
 
 然后我们就可以在 VNC 里面看到启动后的 Windows Server 安装了。
 
-![截屏 2025-12-11 23.44.23](./%E6%88%AA%E5%B1%8F2025-12-11%2023.44.23-20251211234428-9oirak3-1765850426236-115.png)
+![](./%E6%88%AA%E5%B1%8F2025-12-11%2023.44.23-20251211234428-9oirak3-1765850426236-115.png)
 
 #### 3）安装 Windows Server 2022
 
@@ -562,7 +562,7 @@ New-OfficeWebAppsFarm -InternalURL "http://webview.ayaka-internal.space" -AllowH
 
 执行效果如下，他会提示你的是否允许编辑，实测并不会要你输入微软密钥或者 License：
 
-![截屏 2025-12-12 01.12.56](./%E6%88%AA%E5%B1%8F2025-12-12%2001.12.56-20251212011258-uv1te27-1765850426237-182.png)
+![](./%E6%88%AA%E5%B1%8F2025-12-12%2001.12.56-20251212011258-uv1te27-1765850426237-182.png)
 
 然后接下来，我们要允许从互联网的 URL 读文件，需要执行下面命令：
 
@@ -572,13 +572,13 @@ Set-OfficeWebAppsFarm -OpenFromUrlEnabled
 
 然后我们在浏览器里面输入刚刚的域名，就可以看到部署已经成功完成！
 
-![截屏 2025-12-12 01.15.34](./%E6%88%AA%E5%B1%8F2025-12-12%2001.15.34-20251212011536-gbq45yo-1765850426237-183.png)
+![](./%E6%88%AA%E5%B1%8F2025-12-12%2001.15.34-20251212011536-gbq45yo-1765850426237-183.png)
 
 到这里已经结束了基本，最后我们还需要去安装 Office Online Server 的语言包，下载地址：[https://www.microsoft.com/zh-cn/download/details.aspx?id=51963](https://www.microsoft.com/zh-cn/download/details.aspx?id=51963)
 
 安装过程和前面的基本一样，我这里就省略了：
 
-![截屏 2025-12-12 01.17.38](./%E6%88%AA%E5%B1%8F2025-12-12%2001.17.38-20251212011741-tieecp1-1765850426237-184.png)
+![](./%E6%88%AA%E5%B1%8F2025-12-12%2001.17.38-20251212011741-tieecp1-1765850426237-184.png)
 
 ### 三、问题调教教程
 
@@ -606,7 +606,7 @@ Set-OfficeWebAppsFarm -ExternalURL https://<你的外网访问地址>
 
 然后把你上传的文件的 URL 复制到 Office online server，然后点击预览：
 
-![截屏 2025-12-12 01.27.40](./%E6%88%AA%E5%B1%8F2025-12-12%2001.27.40-20251212012747-116x6zb-1765850426238-188.png)
+![](./%E6%88%AA%E5%B1%8F2025-12-12%2001.27.40-20251212012747-116x6zb-1765850426238-188.png)
 
 另外还有一种方法，通过共享 windows 的文件夹，然后预览，就是输入类似 `\\server1\web\test.docs` ​的方法，这种方法叫做 UNC 路径，具体参考微软官方的文档：[使用 Microsoft Office Online 或 Office Online Server 查看器测试查看 Office 文档 - Microsoft 365 Apps | Microsoft Learn](https://learn.microsoft.com/zh-cn/troubleshoot/microsoft-365-apps/administration/test-viewing-documents-by-using-office-online-server-viewer)
 
@@ -867,7 +867,7 @@ OFFICE_WEB_APP_CLIENT_KEY = 'path/to/client.key'
 
 微软的这个 Office online server 端的移动视图做的很不友好，虽然可能很早之前希望有一个这样的移动阅读器，但是真实体验在手机上阅读就是灾难级别的。所以作为一个 workaround，需要我们屏蔽掉这种手机视图。大家可以根据自己的需要，毕竟用一个体验诡异的预览试图，还不如改成电脑端的正常视图。
 
-![截屏 2025-12-14 22.07.42](./%E6%88%AA%E5%B1%8F2025-12-14%2022.07.42-20251214220749-t6syp36-1765850426238-197.png)
+![](./%E6%88%AA%E5%B1%8F2025-12-14%2022.07.42-20251214220749-t6syp36-1765850426238-197.png)
 
 解决方案需要修改反向代理的 Nginx，在我现有的 Nginx 配置中 `location /` 里，直接加这一行即可：
 
