@@ -355,3 +355,8 @@ Node                  SN                   Model                                
 - 记得加载 `vfio` ​有关的模块，模块没有加载也可能导致失败，而且记得绑定 VF 到 vfio
 
 ‍
+然后这里还有一些参考资料：
+
+- [Fixed the SR-IOV fault of PM1733/PM1735. · Issue #1126 · linux-nvme/nvme-cli](https://github.com/linux-nvme/nvme-cli/issues/1126)
+- [virtualization - How to setup SR-IOV with Samsung PM1733/1735 NVMe SSD - Stack Overflow](https://stackoverflow.com/questions/65350988/how-to-setup-sr-iov-with-samsung-pm1733-1735-nvme-ssd)
+- [有没有大佬知道PM1733/PM1735怎么启用SR-IOV - 电脑讨论(新) - Chiphell - 分享与交流用户体验](https://www.chiphell.com/thread-2441501-1-1.html)
