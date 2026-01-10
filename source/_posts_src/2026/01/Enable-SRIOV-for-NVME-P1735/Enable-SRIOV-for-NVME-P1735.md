@@ -89,7 +89,7 @@ sudo nvme id-ctrl /dev/nvme0 | grep fr
 for n in $(sudo nvme list-ns /dev/nvme0 -a | sed -n 's/.*]:0x\([0-9a-fA-F]\+\)/\1/p'); do   echo "NS $n:"; sudo nvme list-ctrl /dev/nvme0 -n $n; done
 ```
 
-输出结果如下，可以看到 NS 0（Namespace，后面缩写） 绑定到了 `0x41` ​的控制器：
+输出结果如下，可以看到 NS 1（Namespace，后面缩写） 绑定到了 `0x41` ​的控制器：
 
 ```bash
 zzq ➜ ~/cloud-images (master) $ for n in $(sudo nvme list-ns /dev/nvme0 -a | sed -n 's/.*]:0x\([0-9a-fA-F]\+\)/\1/p'); do   echo "NS $n:"; sudo nvme list-ctrl /dev/nvme0 -n $n; done
@@ -98,7 +98,7 @@ num of ctrls present: 1
 [   0]:0x41
 ```
 
-然后需要 detach 掉 NS 0，然后删除掉 NS 0：
+然后需要 detach 掉 NS 1，然后删除掉 NS 1：
 
 ```bash
  sudo nvme detach-ns /dev/nvme0 -n 1 -c 0x41
